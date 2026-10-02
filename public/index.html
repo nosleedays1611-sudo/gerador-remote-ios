@@ -4,3313 +4,1013 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#000000">
-
-<title>Rafaela - Generator Remote iOS</title>
+<title>Remote iOS</title>
+<link rel="icon" type="image/gif" href="/icon.gif">
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    width:100%;
-    min-height:100%;
-    background:#000;
-    overscroll-behavior-y:none;
-}
-
-body{
-    width:100%;
-    min-height:100%;
-    margin:0;
-
-    background:#000;
-    color:#fff;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    overflow-x:hidden;
-    overscroll-behavior-y:none;
-
-    -webkit-text-size-adjust:100%;
-}
-
-button,
-input,
-select{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-.hidden{
-    display:none !important;
-}
-
-
-/* =========================================================
-   FUNDO FIXO
-========================================================= */
-
-#fixedBackground{
-    position:fixed;
-
-    inset:0;
-
-    width:100vw;
-    height:100vh;
-    height:100dvh;
-
-    overflow:hidden;
-
-    z-index:0;
-
-    background:#000;
-
-    pointer-events:none;
-
-    transform:translateZ(0);
-}
-
-#particles{
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    display:block;
-}
-
-.page{
-    position:relative;
-
-    z-index:1;
-
-    width:100%;
-    min-height:100vh;
-    min-height:100dvh;
-}
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-.login-screen{
-    width:100%;
-
-    min-height:100vh;
-    min-height:100svh;
-
-    display:grid;
-    place-items:center;
-
-    padding:
-        max(24px, env(safe-area-inset-top))
-        max(20px, env(safe-area-inset-right))
-        max(24px, env(safe-area-inset-bottom))
-        max(20px, env(safe-area-inset-left));
-}
-
-.login-content{
-    width:100%;
-    max-width:430px;
-
-    margin:auto;
-
-    text-align:center;
-}
-
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo{
-    position:relative;
-
-    display:grid;
-    place-items:center;
-
-    width:64px;
-    height:64px;
-
-    margin:0 auto 14px;
-
-    border:1px solid #202020;
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    background:
-        radial-gradient(
-            circle at 62% 35%,
-            #ececec 0 8%,
-            #7d7d7d 9%,
-            #181818 29%,
-            #050505 64%
-        );
-
-    box-shadow:
-        0 0 26px
-        rgba(255,255,255,.07);
-}
-
-.logo::before{
-    content:"";
-
-    position:absolute;
-
-    width:30px;
-    height:9px;
-
-    left:17px;
-    top:24px;
-
-    border-radius:50%;
-
-    background:#e9e9e9;
-
-    transform:rotate(-8deg);
-
-    box-shadow:
-        inset 0 -3px 5px #666;
-}
-
-.logo::after{
-    content:"";
-
-    position:absolute;
-
-    width:6px;
-    height:6px;
-
-    left:30px;
-    top:26px;
-
-    border-radius:50%;
-
-    background:#111;
-
-    box-shadow:
-        0 0 7px
-        rgba(255,255,255,.55);
-}
-
-.logo span{
-    position:absolute;
-
-    width:2px;
-    height:23px;
-
-    left:32px;
-    top:31px;
-
-    background:
-        linear-gradient(
-            #d62442,
-            transparent
-        );
-
-    transform:rotate(4deg);
-
-    opacity:.8;
-}
-
-
-/* =========================================================
-   HEADER LOGIN
-========================================================= */
-
-.small-title{
-    margin-bottom:13px;
-
-    color:#666;
-
-    font-size:10px;
-    font-weight:800;
-
-    letter-spacing:2px;
-}
-
-.main-title{
-    margin-bottom:11px;
-
-    font-size:34px;
-    line-height:1;
-
-    font-weight:900;
-
-    letter-spacing:-1.5px;
-}
-
-.description{
-    max-width:360px;
-
-    margin:
-        0 auto
-        27px;
-
-    color:#626262;
-
-    font-size:14px;
-    font-weight:600;
-
-    line-height:1.45;
-}
-
-
-/* =========================================================
-   CARDS / FIELDS
-========================================================= */
-
-.login-card,
-.panel{
-    background:
-        rgba(11,11,11,.96);
-
-    border:
-        1px solid
-        #292929;
-
-    box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.72);
-}
-
-.login-card{
-    width:100%;
-
-    padding:20px;
-
-    border-radius:20px;
-
-    text-align:left;
-}
-
-.field{
-    margin-bottom:15px;
-}
-
-.field label{
-    display:block;
-
-    margin-bottom:6px;
-
-    color:#707070;
-
-    font-size:10px;
-    font-weight:900;
-
-    letter-spacing:1.7px;
-}
-
-.field input,
-.field select{
-    width:100%;
-    height:45px;
-
-    padding:0 14px;
-
-    border:
-        1px solid
-        #292929;
-
-    border-radius:11px;
-
-    outline:none;
-
-    background:#020202;
-    color:#f5f5f5;
-
-    font-size:13px;
-}
-
-.field input::placeholder{
-    color:#363636;
-}
-
-.field input:focus,
-.field select:focus{
-    border-color:#4b4b4b;
-}
-
-
-/* =========================================================
-   BOTÕES
-========================================================= */
-
-.login-button,
-.main-button{
-    width:100%;
-    height:46px;
-
-    border:0;
-
-    border-radius:11px;
-
-    background:#f4f4f4;
-    color:#080808;
-
-    font-size:14px;
-    font-weight:900;
-}
-
-.login-button:hover,
-.main-button:hover{
-    background:#fff;
-}
-
-.small-button{
-    width:auto;
-    min-height:34px;
-
-    padding:0 12px;
-
-    border:
-        1px solid
-        #303030;
-
-    border-radius:9px;
-
-    background:#121212;
-    color:#bbb;
-
-    font-size:10px;
-    font-weight:800;
-}
-
-.small-button:hover{
-    background:#1a1a1a;
-}
-
-.login-error{
-    display:block;
-
-    min-height:17px;
-
-    margin-top:9px;
-
-    color:#a84949;
-
-    font-size:11px;
-
-    text-align:center;
-}
-
-.support{
-    margin-top:20px;
-
-    color:#414141;
-
-    font-size:10px;
-}
-
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-.dashboard{
-    width:100%;
-    min-height:100vh;
-    min-height:100dvh;
-
-    padding:
-        max(34px, env(safe-area-inset-top))
-        max(22px, env(safe-area-inset-right))
-        max(60px, env(safe-area-inset-bottom))
-        max(22px, env(safe-area-inset-left));
-}
-
-.dashboard-wrap{
-    width:100%;
-    max-width:1180px;
-
-    margin:auto;
-}
-
-.dashboard-header{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-
-    gap:16px;
-
-    margin-bottom:26px;
-}
-
-.dashboard-brand{
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    min-width:0;
-}
-
-.mini-logo{
-    flex:0 0 auto;
-
-    display:grid;
-    place-items:center;
-
-    width:42px;
-    height:42px;
-
-    border:
-        1px solid
-        #292929;
-
-    border-radius:12px;
-
-    background:#101010;
-
-    font-size:17px;
-    font-weight:900;
-}
-
-.dashboard-brand h1{
-    font-size:21px;
-    font-weight:900;
-}
-
-.dashboard-brand p{
-    margin-top:3px;
-
-    color:#555;
-
-    font-size:9px;
-    font-weight:800;
-
-    letter-spacing:1.6px;
-}
-
-.logout{
-    width:auto;
-    height:38px;
-
-    padding:0 16px;
-
-    border:
-        1px solid
-        #292929;
-
-    border-radius:10px;
-
-    background:#0d0d0d;
-    color:#aaa;
-
-    font-size:12px;
-    font-weight:700;
-}
-
-
-/* =========================================================
-   GRID
-========================================================= */
-
-.dashboard-grid{
-    display:grid;
-
-    grid-template-columns:
-        320px
-        minmax(0,1fr);
-
-    gap:17px;
-}
-
-.panel{
-    min-width:0;
-
-    padding:20px;
-
-    border-radius:19px;
-}
-
-.panel-top{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:flex-start;
-
-    gap:15px;
-
-    margin-bottom:20px;
-}
-
-.panel-tag{
-    color:#555;
-
-    font-size:9px;
-    font-weight:900;
-
-    letter-spacing:2px;
-}
-
-.panel h2{
-    margin-top:4px;
-
-    font-size:19px;
-}
-
-.online{
-    color:#555;
-
-    font-size:9px;
-    font-weight:800;
-
-    letter-spacing:1px;
-}
-
-.online::before{
-    content:"";
-
-    display:inline-block;
-
-    width:5px;
-    height:5px;
-
-    margin-right:5px;
-
-    border-radius:50%;
-
-    background:#aaa;
-}
-
-
-/* =========================================================
-   GERADOR / COPIAR
-========================================================= */
-
-.generated-head{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-
-    gap:10px;
-
-    margin-top:14px;
-}
-
-.generated-title{
-    color:#555;
-
-    font-size:9px;
-    font-weight:900;
-
-    letter-spacing:1.4px;
-}
-
-.generator-output{
-    min-height:87px;
-
-    margin-top:8px;
-    padding:12px;
-
-    border:
-        1px solid
-        #222;
-
-    border-radius:11px;
-
-    background:#020202;
-    color:#777;
-
-    font-family:
-        Consolas,
-        monospace;
-
-    font-size:11px;
-
-    white-space:pre-wrap;
-
-    word-break:break-all;
-}
-
-
-/* =========================================================
-   FILTROS / BULK
-========================================================= */
-
-.filters{
-    display:grid;
-
-    grid-template-columns:
-        minmax(150px,1fr)
-        125px
-        90px;
-
-    gap:7px;
-
-    margin-bottom:10px;
-}
-
-.filters input,
-.filters select{
-    width:100%;
-    min-width:0;
-    height:39px;
-
-    padding:0 11px;
-
-    border:
-        1px solid
-        #282828;
-
-    border-radius:9px;
-
-    outline:none;
-
-    background:#020202;
-    color:#aaa;
-
-    font-size:11px;
-}
-
-.refresh{
-    height:39px;
-
-    border:
-        1px solid
-        #292929;
-
-    border-radius:9px;
-
-    background:#111;
-    color:#bbb;
-
-    font-size:11px;
-    font-weight:700;
-}
-
-.bulk-bar{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-
-    flex-wrap:wrap;
-
-    gap:8px;
-
-    margin-bottom:12px;
-
-    padding:
-        9px
-        10px;
-
-    border:
-        1px solid
-        #222;
-
-    border-radius:10px;
-
-    background:#080808;
-}
-
-.bulk-left{
-    display:flex;
-
-    align-items:center;
-
-    gap:9px;
-
-    color:#777;
-
-    font-size:10px;
-}
-
-.check{
-    width:15px;
-    height:15px;
-
-    accent-color:#f4f4f4;
-}
-
-
-/* =========================================================
-   TABELA
-========================================================= */
-
-.table-wrap{
-    width:100%;
-
-    overflow:auto;
-
-    border:
-        1px solid
-        #202020;
-
-    border-radius:11px;
-
-    -webkit-overflow-scrolling:touch;
-}
-
-table{
-    width:100%;
-
-    border-collapse:collapse;
-
-    min-width:860px;
-}
-
-thead{
-    background:#080808;
-}
-
-th{
-    padding:
-        11px
-        9px;
-
-    color:#555;
-
-    font-size:9px;
-    font-weight:800;
-
-    text-align:left;
-
-    letter-spacing:1px;
-
-    white-space:nowrap;
-}
-
-td{
-    padding:
-        10px
-        9px;
-
-    border-top:
-        1px solid
-        #202020;
-
-    color:#999;
-
-    font-size:11px;
-
-    vertical-align:middle;
-}
-
-td strong{
-    color:#ddd;
-
-    word-break:break-all;
-}
-
-.status{
-    display:inline-block;
-
-    padding:
-        3px
-        7px;
-
-    border:
-        1px solid
-        #303030;
-
-    border-radius:20px;
-}
-
-.action{
-    padding:
-        5px
-        7px;
-
-    margin:
-        2px;
-
-    border:
-        1px solid
-        #292929;
-
-    border-radius:7px;
-
-    background:#111;
-    color:#aaa;
-
-    font-size:9px;
-
-    white-space:nowrap;
-}
-
-.action:hover{
-    background:#1a1a1a;
-}
-
-.result-count{
-    color:#444;
-
-    font-size:10px;
-}
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-#toast{
-    display:none;
-
-    position:fixed;
-
-    left:50%;
-    bottom:
-        max(
-            22px,
-            env(safe-area-inset-bottom)
-        );
-
-    z-index:9999;
-
-    max-width:
-        calc(100vw - 32px);
-
-    padding:
-        11px
-        16px;
-
-    border-radius:10px;
-
-    background:#f5f5f5;
-    color:#050505;
-
-    box-shadow:
-        0 10px 40px
-        rgba(0,0,0,.7);
-
-    font-size:12px;
-    font-weight:800;
-
-    text-align:center;
-
-    transform:
-        translateX(-50%);
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
+:root{
+  --bg:#000;
+  --panel:#0d0d0d;
+  --panel2:#111;
+  --line:#2b2b2b;
+  --line2:#202020;
+  --text:#f5f5f5;
+  --muted:#777;
+  --muted2:#555;
+  --white:#f4f4f4;
+  --green:#35e28c;
+  --red:#ff5b5b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;min-height:100%;background:#000;color:var(--text);font-family:Inter,Arial,Helvetica,sans-serif}
+body{overflow-x:hidden;-webkit-text-size-adjust:100%;overscroll-behavior-y:none}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+
+/* BACKGROUND */
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:#000;overflow:hidden}
+#particles{position:absolute;inset:0;width:100%;height:100%}
+.app{position:relative;z-index:1;min-height:100vh;min-height:100dvh}
+
+/* LOGIN */
+.login-page{min-height:100vh;min-height:100svh;display:grid;place-items:center;padding:36px 20px}
+.login-wrap{width:min(100%,430px);text-align:center}
+.brand-mark{width:58px;height:58px;border:1px solid #252525;border-radius:16px;background:#0b0b0b;margin:0 auto 12px;overflow:hidden;box-shadow:0 0 25px rgba(255,255,255,.08)}
+.login-kicker{font-size:9px;color:#666;font-weight:900;letter-spacing:1.9px;margin-bottom:12px}
+.login-title{font-size:35px;letter-spacing:-1.5px;font-weight:900;margin-bottom:9px}
+.login-desc{color:#666;font-size:13px;font-weight:600;line-height:1.45;margin:0 auto 24px;max-width:340px}
+.login-card{background:rgba(11,11,11,.97);border:1px solid var(--line);border-radius:18px;padding:18px;text-align:left;box-shadow:0 25px 80px rgba(0,0,0,.75)}
+.label{display:block;color:#6a6a6a;font-size:9px;font-weight:900;letter-spacing:1.5px;margin:0 0 7px}
+.input,.select{width:100%;height:43px;border:1px solid #292929;border-radius:10px;background:#020202;color:#eee;padding:0 12px;outline:none}
+.input:focus,.select:focus{border-color:#444}
+.login-row{display:grid;grid-template-columns:1fr 92px;gap:8px;margin-top:14px}
+.detect-btn{height:43px;border:1px solid #303030;border-radius:10px;background:#151515;color:#ddd;font-size:11px;font-weight:800}
+.primary{width:100%;height:44px;border:0;border-radius:10px;background:#f4f4f4;color:#080808;font-size:13px;font-weight:900}
+.primary:hover{background:#fff}
+.login-enter{margin-top:14px}
+.login-foot{margin-top:18px;color:#414141;font-size:9px}
+.login-error{min-height:15px;margin-top:9px;color:#a84c4c;font-size:10px;text-align:center}
+
+/* APP HEADER */
+.shell{width:min(100% - 34px,900px);margin:0 auto;padding:26px 0 92px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:38px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-box{width:42px;height:42px;border-radius:12px;border:1px solid #292929;background:#0f0f0f;overflow:hidden;flex:0 0 auto}
+.brand-mark img,.brand-box img{width:100%;height:100%;display:block;object-fit:cover}
+.brand h1{font-size:22px;font-weight:900;letter-spacing:-.8px}
+.brand p{font-size:8px;color:#555;margin-top:3px}
+.top-actions{display:flex;align-items:center;gap:8px}
+.status-pill{height:31px;padding:0 11px;border-radius:10px;border:1px solid #292929;background:#0c0c0c;color:#888;font-size:9px;display:flex;align-items:center;gap:6px}
+.status-dot{width:5px;height:5px;border-radius:50%;background:var(--red)}
+.icon-btn{width:34px;height:34px;border:1px solid #292929;border-radius:10px;background:#0d0d0d;color:#aaa;display:grid;place-items:center;font-size:14px}
+
+/* SECTION TITLES */
+.page-head{margin-bottom:20px}
+.eyebrow{font-size:9px;color:#626262;font-weight:900;letter-spacing:2px;margin-bottom:5px}
+.page-title{font-size:34px;line-height:1;font-weight:900;letter-spacing:-1.7px;margin-bottom:9px}
+.page-desc{color:#666;font-size:11px;line-height:1.45}
+
+/* PANELS */
+.panel{background:rgba(12,12,12,.96);border:1px solid var(--line);border-radius:17px;overflow:hidden}
+.panel-section{padding:15px 16px;border-top:1px solid var(--line2)}
+.panel-section:first-child{border-top:0}
+.row-head{display:flex;justify-content:space-between;gap:14px;align-items:center}
+.row-title{font-size:12px;font-weight:800;color:#e8e8e8}
+.row-sub{font-size:9px;color:#555;margin-top:3px;line-height:1.4}
+.row-meta{font-size:9px;color:#666;white-space:nowrap}
+.control-block{margin-top:11px}
+
+/* AIM MODE */
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}
+.mode-card{min-height:54px;border:1px solid #303030;border-radius:11px;background:#171717;color:#aaa;display:flex;align-items:center;gap:10px;padding:0 13px;text-align:left}
+.mode-card.active{background:#f5f5f5;color:#111;border-color:#f5f5f5}
+.radio{width:10px;height:10px;border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;flex:0 0 auto}
+.radio:after{content:"";width:4px;height:4px;border-radius:50%;background:currentColor;opacity:0}
+.mode-card.active .radio:after{opacity:1}
+.mode-name{font-size:11px;font-weight:900}
+.mode-desc{font-size:8px;opacity:.62;margin-top:2px}
+
+/* SELECTS */
+.select{appearance:auto;font-size:11px}
+
+/* SLIDER */
+.range-wrap{display:grid;grid-template-columns:1fr 48px;gap:9px;align-items:center;margin-top:11px}
+.range{width:100%;accent-color:#f3f3f3}
+.value-box{height:30px;border:1px solid #292929;border-radius:8px;background:#050505;display:grid;place-items:center;font-size:10px;font-weight:800}
+
+/* TOGGLE */
+.toggle{width:32px;height:18px;border-radius:999px;background:#3a3a3a;position:relative;flex:0 0 auto;transition:.16s}
+.toggle::after{content:"";position:absolute;width:14px;height:14px;left:2px;top:2px;background:#fff;border-radius:50%;transition:.16s}
+.toggle.on{background:#f4f4f4}
+.toggle.on::after{left:16px;background:#111}
+
+/* DANGER BUTTON */
+.danger{width:100%;height:38px;border:1px solid #6f2727;border-radius:9px;background:#261010;color:#ff8888;font-size:10px;font-weight:800}
+
+/* SYNC */
+.sync{display:flex;align-items:center;gap:6px;margin:10px 2px 0;color:#555;font-size:8px}
+.sync-dot{width:5px;height:5px;background:var(--green);border-radius:50%}
+
+/* NAV */
+.bottom-nav{position:fixed;z-index:20;left:50%;bottom:max(11px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 26px),405px);height:48px;border:1px solid #292929;border-radius:13px;background:rgba(12,12,12,.98);display:grid;grid-template-columns:repeat(5,1fr);padding:4px;box-shadow:0 15px 50px rgba(0,0,0,.7)}
+.nav-btn{border:0;border-radius:9px;background:transparent;color:#666;font-size:8px;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.nav-btn .ico{font-size:12px}
+.nav-btn.active{background:#f4f4f4;color:#111}
+
+/* OVERLAY */
+.overlay-box{height:325px;border:1px solid #292929;border-radius:13px;background:#020202;position:relative;overflow:hidden}
+.overlay-ready{position:absolute;left:13px;bottom:9px;color:#555;font-size:8px}
+.overlay-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.secondary{height:38px;border:1px solid #303030;border-radius:9px;background:#0e0e0e;color:#ddd;font-size:10px}
+.overlay-demo{position:absolute;inset:0;opacity:0;transition:.2s}
+.overlay-demo.on{opacity:1}
+.demo-fov{position:absolute;width:175px;height:175px;border:1px solid #ddd;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}
+.enemy{position:absolute;width:48px;height:110px;border:1px solid #666}
+.enemy:before{content:"";position:absolute;left:3px;top:0;width:2px;height:100%;background:#14f43f}
+.enemy.e1{left:9%;top:32%}.enemy.e2{left:33%;top:45%}.enemy.e3{right:15%;top:30%}
+.enemy-name{position:absolute;top:-13px;left:0;font-size:7px;color:#ddd;white-space:nowrap}
+.skeleton{position:absolute;left:50%;top:10px;width:1px;height:90px;background:#aaa;transform:translateX(-50%) rotate(5deg)}
+.skeleton:before,.skeleton:after{content:"";position:absolute;width:40px;height:1px;background:#aaa;left:-20px;top:35px;transform:rotate(25deg)}
+.skeleton:after{transform:rotate(-25deg)}
+
+/* INFO */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.info-card{border:1px solid #292929;border-radius:13px;background:#0d0d0d;padding:14px}
+.info-card.full{grid-column:1/-1}
+.info-label{font-size:8px;color:#5a5a5a;font-weight:900;letter-spacing:1.4px;margin-bottom:7px}
+.info-value{font-size:12px;color:#eee;font-weight:900}
+.info-big{font-size:18px}
+
+/* FULLSCREEN OVERLAY VIEW */
+.overlay-view{position:fixed;inset:0;z-index:50;background:#000}
+.overlay-view .viewer{position:absolute;inset:0;overflow:hidden}
+.overlay-view .demo-fov{width:min(42vw,430px);height:min(42vw,430px)}
+.overlay-view .enemy{transform:scale(1.35);transform-origin:bottom left}
+.close-view{position:fixed;right:18px;top:max(18px,env(safe-area-inset-top));z-index:60;width:38px;height:38px;border:1px solid #333;border-radius:10px;background:#101010;color:#ddd}
+
+/* MOBILE */
 @media(max-width:720px){
-
-    .login-screen{
-        min-height:100svh;
-
-        align-items:center;
-
-        padding:
-            max(20px, env(safe-area-inset-top))
-            20px
-            max(26px, env(safe-area-inset-bottom));
-    }
-
-    .login-content{
-        max-width:380px;
-    }
-
-    .dashboard{
-        padding:
-            max(22px, env(safe-area-inset-top))
-            14px
-            max(40px, env(safe-area-inset-bottom));
-    }
-
-    .dashboard-wrap{
-        max-width:100%;
-    }
-
-    .dashboard-header{
-        margin-bottom:20px;
-    }
-
-    .dashboard-grid{
-        display:flex;
-
-        flex-direction:column;
-
-        gap:14px;
-    }
-
-    .panel{
-        width:100%;
-
-        padding:17px;
-
-        border-radius:17px;
-    }
-
-    .filters{
-        display:flex;
-
-        flex-direction:column;
-
-        gap:8px;
-    }
-
-    .filters input,
-    .filters select,
-    .refresh{
-        width:100%;
-        height:42px;
-    }
-
-    .bulk-bar{
-        align-items:flex-start;
-
-        flex-direction:column;
-    }
-
-    .table-wrap{
-        overflow:visible;
-
-        border:0;
-    }
-
-    table{
-        display:block;
-
-        width:100%;
-        min-width:0;
-    }
-
-    thead{
-        display:none;
-    }
-
-    tbody{
-        display:flex;
-
-        flex-direction:column;
-
-        gap:10px;
-    }
-
-    tr{
-        display:block;
-
-        width:100%;
-
-        padding:
-            4px
-            13px;
-
-        border:
-            1px solid
-            #252525;
-
-        border-radius:13px;
-
-        background:#080808;
-    }
-
-    td{
-        display:grid;
-
-        grid-template-columns:
-            88px
-            minmax(0,1fr);
-
-        align-items:center;
-
-        gap:10px;
-
-        width:100%;
-
-        padding:
-            10px
-            0;
-
-        border-top:
-            1px solid
-            #1d1d1d;
-
-        font-size:11px;
-
-        word-break:break-word;
-    }
-
-    td:first-child{
-        border-top:0;
-    }
-
-    td::before{
-        content:
-            attr(data-label);
-
-        color:#525252;
-
-        font-size:8px;
-        font-weight:900;
-
-        letter-spacing:1.2px;
-    }
-
-    td.select-cell{
-        display:flex;
-
-        justify-content:space-between;
-    }
-
-    td.actions-cell{
-        display:block;
-    }
-
-    td.actions-cell::before{
-        display:block;
-
-        margin-bottom:8px;
-    }
-
-    .action{
-        display:inline-flex;
-
-        align-items:center;
-        justify-content:center;
-
-        min-height:31px;
-
-        margin:
-            2px
-            3px
-            2px
-            0;
-
-        padding:
-            6px
-            9px;
-    }
+  .shell{width:calc(100% - 24px);padding:20px 0 88px}
+  .topbar{margin-bottom:28px}
+  .brand h1{font-size:19px}
+  .brand-box{width:38px;height:38px}
+  .status-pill{display:none}
+  .page-title{font-size:30px}
+  .mode-grid{grid-template-columns:1fr}
+  .panel-section{padding:14px}
+  .overlay-box{height:260px}
+  .overlay-buttons{grid-template-columns:1fr}
+  .info-grid{grid-template-columns:1fr}
+  .info-card.full{grid-column:auto}
+  .bottom-nav{height:52px}
+}
+@media(max-width:390px){
+  .login-page{padding-left:14px;padding-right:14px}
+  .login-row{grid-template-columns:1fr 84px}
+  .shell{width:calc(100% - 18px)}
 }
 </style>
 </head>
 
-
 <body>
 
+<div id="bg"><canvas id="particles"></canvas></div>
 
-<div id="fixedBackground">
-    <canvas id="particles"></canvas>
-</div>
+<div class="app">
 
+<!-- LOGIN -->
+<section id="loginPage" class="login-page">
+  <div class="login-wrap">
+    <div class="brand-mark"><img src="/icon.gif" alt="Remote iOS"></div>
+    <div class="login-kicker">REMOTE IOS</div>
+    <h1 class="login-title">Remote iOS</h1>
+    <p class="login-desc">Ative sua chave, sincronize seu dispositivo e controle sua experiência.</p>
 
-<div class="page">
+    <div class="login-card">
+      <label class="label">SUA CHAVE</label>
+      <input id="loginKey" class="input" placeholder="REMOTE-IOS-XXXXXX" autocomplete="off" autocapitalize="characters">
 
-
-<section
-    id="loginScreen"
-    class="login-screen"
->
-
-    <div class="login-content">
-
-
-        <div class="logo">
-            <span></span>
+      <div class="login-row">
+        <div>
+          <label class="label">IPV4 PÚBLICO</label>
+          <input id="loginIp" class="input" value="Detectando..." readonly>
         </div>
-
-
-        <div class="small-title">
-            REMOTE IOS GENERATOR
+        <div>
+          <label class="label">&nbsp;</label>
+          <button id="detectIp" class="detect-btn">Detectar</button>
         </div>
+      </div>
 
+      <button id="enterBtn" class="primary login-enter">Entrar</button>
+      <div id="loginError" class="login-error"></div>
+    </div>
 
-        <h1 class="main-title">
-            Rafaela
-        </h1>
+    <div class="login-foot">Remote iOS</div>
+  </div>
+</section>
 
+<!-- DASHBOARD -->
+<section id="dashboard" class="hidden">
+  <div class="shell">
 
-        <p class="description">
-            Gerencie suas chaves de forma rápida e centralizada.
-        </p>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-box"><img src="/icon.gif" alt="Remote iOS"></div>
+        <div>
+          <h1>Remote iOS</h1>
+          <p>Remote iOS</p>
+        </div>
+      </div>
 
+      <div class="top-actions">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span id="onlineText">Offline</span>
+        </div>
+        <button id="logoutBtn" class="icon-btn" title="Sair">↪</button>
+      </div>
+    </header>
 
-        <div class="login-card">
+    <!-- AIM -->
+    <section id="pageAim" class="tab-page">
+      <div class="page-head">
+        <div class="eyebrow">CONFIGURAÇÃO DE MIRA</div>
+        <h2 class="page-title">Aim Mode</h2>
+        <p class="page-desc">Escolha o modo, a região e o campo de visão.</p>
+      </div>
 
-
-            <div class="field">
-
-                <label>
-                    USUÁRIO
-                </label>
-
-                <input
-                    id="username"
-                    autocomplete="username"
-                    autocapitalize="none"
-                    spellcheck="false"
-                    placeholder="Digite seu usuário"
-                >
-
+      <div class="panel">
+        <div class="panel-section">
+          <div class="row-head">
+            <div>
+              <div class="row-title">Aim Mode</div>
             </div>
+            <div class="row-meta" id="aimModeState">Aim Silent ativo</div>
+          </div>
 
-
-            <div class="field">
-
-                <label>
-                    SENHA
-                </label>
-
-                <input
-                    id="password"
-                    type="password"
-                    autocomplete="current-password"
-                    placeholder="Digite sua senha"
-                >
-
-            </div>
-
-
-            <button
-                id="loginButton"
-                class="login-button"
-            >
-                Entrar
+          <div class="mode-grid">
+            <button class="mode-card" data-mode="aimbot">
+              <span class="radio"></span>
+              <span>
+                <div class="mode-name">Aimbot</div>
+                <div class="mode-desc">Modo principal</div>
+              </span>
             </button>
 
+            <button class="mode-card active" data-mode="silent">
+              <span class="radio"></span>
+              <span>
+                <div class="mode-name">Aim Silent</div>
+                <div class="mode-desc">Modo alternativo</div>
+              </span>
+            </button>
+          </div>
 
-            <small
-                id="loginError"
-                class="login-error"
-            ></small>
-
-
+          <div class="row-sub" style="margin-top:9px">Escolha um modo para ativar. Toque novamente no modo selecionado para desativar.</div>
         </div>
 
+        <div class="panel-section">
+          <div class="row-head">
+            <div class="row-title">Target</div>
+            <div class="row-meta">Região selecionada</div>
+          </div>
+          <div class="control-block">
+            <select id="targetSelect" class="select">
+              <option>Head</option>
+              <option>Chest</option>
+              <option>Body</option>
+            </select>
+          </div>
+        </div>
 
-        <p class="support">
-            Remote IOS Generator
-        </p>
+        <div class="panel-section">
+          <div class="row-head">
+            <div class="row-title">Aim FOV</div>
+            <div class="row-meta">0 a 360°</div>
+          </div>
+          <div class="range-wrap">
+            <input id="fovRange" class="range" type="range" min="0" max="360" value="252">
+            <div id="fovValue" class="value-box">252°</div>
+          </div>
+          <div class="row-sub" style="margin-top:7px">O FOV selecionado vale para os modos de mira.</div>
+        </div>
 
+        <div class="panel-section">
+          <div class="row-head">
+            <div>
+              <div class="row-title">Show FOV</div>
+              <div class="row-sub">Exibe o círculo somente quando esta opção estiver ligada</div>
+            </div>
+            <button class="toggle on" data-toggle="showFov"></button>
+          </div>
+        </div>
+      </div>
 
-    </div>
+      <div class="sync"><span class="sync-dot"></span>Sincronização ativa</div>
+    </section>
 
+    <!-- VISUALS -->
+    <section id="pageVisuals" class="tab-page hidden">
+      <div class="page-head">
+        <div class="eyebrow">ELEMENTOS NA TELA</div>
+        <h2 class="page-title">Visuals</h2>
+        <p class="page-desc">Escolha quais informações visuais aparecem na interface.</p>
+      </div>
+
+      <div class="panel">
+        <div class="panel-section">
+          <div class="row-head">
+            <div><div class="row-title">Overlay ESP</div><div class="row-sub">Habilita a camada de visualização remota</div></div>
+            <button class="toggle" data-toggle="overlayEsp"></button>
+          </div>
+        </div>
+
+        <div class="panel-section"><div class="row-head"><div><div class="row-title">ESP Box</div><div class="row-sub">Exibe a caixa</div></div><button class="toggle" data-toggle="espBox"></button></div></div>
+        <div class="panel-section"><div class="row-head"><div><div class="row-title">ESP Health</div><div class="row-sub">Exibe a barra de vida</div></div><button class="toggle" data-toggle="espHealth"></button></div></div>
+        <div class="panel-section"><div class="row-head"><div><div class="row-title">ESP Name</div><div class="row-sub">Exibe o nome</div></div><button class="toggle" data-toggle="espName"></button></div></div>
+        <div class="panel-section"><div class="row-head"><div><div class="row-title">ESP Skeleton</div><div class="row-sub">Exibe o esqueleto</div></div><button class="toggle" data-toggle="espSkeleton"></button></div></div>
+        <div class="panel-section"><div class="row-head"><div><div class="row-title">Chams</div><div class="row-sub">Modo visual adicional</div></div><button class="toggle" data-toggle="chams"></button></div></div>
+
+        <div class="panel-section">
+          <div class="row-head"><div class="row-title">Box style</div><div class="row-meta">Formato da caixa</div></div>
+          <div class="control-block">
+            <select id="boxStyle" class="select">
+              <option>Cornered</option>
+              <option>Full</option>
+              <option>Rounded</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="row-head">
+            <div><div class="row-title">Box filled</div><div class="row-sub">Preenchimento translúcido</div></div>
+            <button class="toggle" data-toggle="boxFilled"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sync"><span class="sync-dot"></span>Sincronização ativa</div>
+    </section>
+
+    <!-- MISC -->
+    <section id="pageMisc" class="tab-page hidden">
+      <div class="page-head">
+        <div class="eyebrow">AJUSTES AUXILIARES</div>
+        <h2 class="page-title">Misc</h2>
+        <p class="page-desc">Configurações adicionais do perfil remoto.</p>
+      </div>
+
+      <div class="panel">
+        <div class="panel-section">
+          <div class="row-head">
+            <div><div class="row-title">Medkit rápido</div><div class="row-sub">Ajuste do perfil</div></div>
+            <button class="toggle" data-toggle="fastMedkit"></button>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="row-head"><div class="row-title">Alok Buff</div><div class="row-meta">Modo selecionado</div></div>
+          <div class="control-block">
+            <select id="alokMode" class="select">
+              <option>Desligado</option>
+              <option>Ligado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="row-head"><div class="row-title">Nível do Alok Buff</div><div class="row-meta">Intensidade</div></div>
+          <div class="control-block">
+            <select id="alokLevel" class="select">
+              <option>Lv 1</option><option>Lv 2</option><option>Lv 3</option><option>Lv 4</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="row-head"><div class="row-title">Atributo</div><div class="row-meta">Nível aplicado</div></div>
+          <div class="control-block">
+            <select id="attributeLevel" class="select">
+              <option>Nível 1</option><option>Nível 2</option><option>Nível 3</option><option selected>Nível 4</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <button id="disableAll" class="danger">Desligar tudo</button>
+          <div class="row-sub" style="margin-top:8px">Restaura todas as opções do perfil para o estado padrão.</div>
+        </div>
+      </div>
+
+      <div class="sync"><span class="sync-dot"></span>Sincronização ativa</div>
+    </section>
+
+    <!-- OVERLAY -->
+    <section id="pageOverlay" class="tab-page hidden">
+      <div class="page-head">
+        <div class="eyebrow">TELEMETRIA AO VIVO</div>
+        <h2 class="page-title">Overlay</h2>
+        <p class="page-desc">Visualização dos recursos enviados pelo cliente conectado.</p>
+      </div>
+
+      <div class="overlay-box">
+        <div id="overlayDemo" class="overlay-demo">
+          <div class="demo-fov"></div>
+          <div class="enemy e1"><div class="enemy-name">player01</div><div class="skeleton"></div></div>
+          <div class="enemy e2"><div class="enemy-name">player02</div><div class="skeleton"></div></div>
+          <div class="enemy e3"><div class="enemy-name">player03</div><div class="skeleton"></div></div>
+        </div>
+        <div id="overlayReady" class="overlay-ready">Pronto para iniciar</div>
+      </div>
+
+      <div class="overlay-buttons">
+        <button id="startOverlay" class="primary">Start ESP</button>
+        <button id="fullOverlay" class="secondary">Tela cheia</button>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section id="pageInfo" class="tab-page hidden">
+      <div class="page-head">
+        <div class="eyebrow">SUA LICENÇA</div>
+        <h2 class="page-title">Info</h2>
+        <p class="page-desc">Detalhes da key e do dispositivo autorizado.</p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card full">
+          <div class="info-label">TEMPO RESTANTE</div>
+          <div id="remaining" class="info-value info-big">23h 59m 59s</div>
+          <div class="row-sub" style="margin-top:8px">Atualizado automaticamente a cada segundo.</div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-label">IPV4 VINCULADO</div>
+          <div id="infoIp" class="info-value">—</div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-label">PLANO</div>
+          <div id="infoPlan" class="info-value">1 dia</div>
+        </div>
+
+        <div class="info-card full">
+          <div class="info-label">KEY VINCULADA</div>
+          <div id="infoKey" class="info-value">REMOTE-IOS-XXXXXX</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-page="Aim"><span class="ico">◉</span><span>Aim</span></button>
+    <button class="nav-btn" data-page="Visuals"><span class="ico">◌</span><span>Visuals</span></button>
+    <button class="nav-btn" data-page="Misc"><span class="ico">⚙</span><span>Misc</span></button>
+    <button class="nav-btn" data-page="Overlay"><span class="ico">▯</span><span>Overlay</span></button>
+    <button class="nav-btn" data-page="Info"><span class="ico">ⓘ</span><span>Info</span></button>
+  </nav>
 </section>
 
-
-
-<section
-    id="dashboard"
-    class="dashboard hidden"
->
-
-<div class="dashboard-wrap">
-
-
-<header class="dashboard-header">
-
-    <div class="dashboard-brand">
-
-        <div class="mini-logo">
-            R
-        </div>
-
-
-        <div>
-
-            <h1>
-                Generator
-            </h1>
-
-            <p>
-                REMOTE IOS
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <button
-        id="logoutButton"
-        class="logout"
-    >
-        Sair
-    </button>
-
-</header>
-
-
-
-<div class="dashboard-grid">
-
-
-<!-- =====================================================
-     GERADOR
-===================================================== -->
-
-<div class="panel">
-
-
-    <div class="panel-top">
-
-        <div>
-
-            <span class="panel-tag">
-                GENERATOR
-            </span>
-
-            <h2>
-                Gerar keys
-            </h2>
-
-        </div>
-
-
-        <div class="online">
-            ONLINE
-        </div>
-
-    </div>
-
-
-
-    <div class="field">
-
-        <label>
-            PLANO
-        </label>
-
-        <select id="plan">
-
-            <option value="1">
-                1 dia
-            </option>
-
-            <option value="7">
-                7 dias
-            </option>
-
-            <option value="30">
-                30 dias
-            </option>
-
-            <option value="lifetime">
-                Lifetime
-            </option>
-
-            <option value="custom">
-                Custom
-            </option>
-
-        </select>
-
-    </div>
-
-
-
-    <div
-        id="customDaysWrap"
-        class="field hidden"
-    >
-
-        <label>
-            DIAS
-        </label>
-
-        <input
-            id="customDays"
-            type="number"
-            inputmode="numeric"
-            min="1"
-            value="1"
-        >
-
-    </div>
-
-
-
-    <div class="field">
-
-        <label>
-            QUANTIDADE
-        </label>
-
-        <input
-            id="quantity"
-            type="number"
-            inputmode="numeric"
-            min="1"
-            max="100"
-            value="1"
-        >
-
-    </div>
-
-
-
-    <div class="field">
-
-        <label>
-            OBSERVAÇÃO
-        </label>
-
-        <input
-            id="note"
-            placeholder="Opcional"
-        >
-
-    </div>
-
-
-
-    <button
-        id="generateButton"
-        class="main-button"
-    >
-        Gerar REMOTE-IOS
-    </button>
-
-
-    <div class="generated-head">
-
-        <span class="generated-title">
-            KEYS GERADAS
-        </span>
-
-        <button
-            id="copyGenerated"
-            class="small-button"
-            disabled
-        >
-            Copiar geradas
-        </button>
-
-    </div>
-
-
-    <pre
-        id="generated"
-        class="generator-output"
-    >As keys aparecerão aqui.</pre>
-
-
-</div>
-
-
-
-<!-- =====================================================
-     MANAGEMENT
-===================================================== -->
-
-<div class="panel">
-
-
-    <div class="panel-top">
-
-        <div>
-
-            <span class="panel-tag">
-                MANAGEMENT
-            </span>
-
-            <h2>
-                Keys
-            </h2>
-
-        </div>
-
-
-        <div
-            id="resultCount"
-            class="result-count"
-        ></div>
-
-    </div>
-
-
-
-    <div class="filters">
-
-        <input
-            id="search"
-            placeholder="Buscar REMOTE-IOS-XXXXXX"
-            autocapitalize="none"
-            spellcheck="false"
-        >
-
-
-        <select id="status">
-
-            <option value="">
-                Todos
-            </option>
-
-            <option value="unused">
-                unused
-            </option>
-
-            <option value="active">
-                active
-            </option>
-
-            <option value="paused">
-                paused
-            </option>
-
-            <option value="disabled">
-                disabled
-            </option>
-
-            <option value="expired">
-                expired
-            </option>
-
-        </select>
-
-
-        <button
-            id="refresh"
-            class="refresh"
-        >
-            Atualizar
-        </button>
-
-    </div>
-
-
-    <div class="bulk-bar">
-
-        <div class="bulk-left">
-
-            <input
-                id="selectAll"
-                class="check"
-                type="checkbox"
-            >
-
-            <label for="selectAll">
-                Selecionar todas
-            </label>
-
-            <span id="selectedCount">
-                0 selecionada(s)
-            </span>
-
-        </div>
-
-
-        <button
-            id="copySelected"
-            class="small-button"
-            disabled
-        >
-            Copiar selecionadas
-        </button>
-
-    </div>
-
-
-
-    <div class="table-wrap">
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th></th>
-
-                    <th>KEY</th>
-
-                    <th>PLANO</th>
-
-                    <th>STATUS</th>
-
-                    <th>EXPIRA</th>
-
-                    <th>IPV4</th>
-
-                    <th>AÇÕES</th>
-
-                </tr>
-
-            </thead>
-
-
-            <tbody id="rows"></tbody>
-
-        </table>
-
-    </div>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
+<!-- FULLSCREEN OVERLAY -->
+<section id="overlayView" class="overlay-view hidden">
+  <button id="closeOverlayView" class="close-view">✕</button>
+  <div class="viewer">
+    <div class="demo-fov"></div>
+    <div class="enemy e1"><div class="enemy-name">player01</div><div class="skeleton"></div></div>
+    <div class="enemy e2"><div class="enemy-name">player02</div><div class="skeleton"></div></div>
+    <div class="enemy e3"><div class="enemy-name">player03</div><div class="skeleton"></div></div>
+  </div>
 </section>
 
-
 </div>
-
-
-<div id="toast"></div>
-
 
 <script>
 /* =========================================================
-   BACKGROUND
+   PARTICLES
 ========================================================= */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let dots = [];
+let cw = 0, ch = 0, lastWidth = 0;
 
-const canvas =
-    document.getElementById(
-        "particles"
-    );
+function setupCanvas(force=false){
+  const w = document.documentElement.clientWidth;
+  const h = Math.max(window.innerHeight, document.documentElement.clientHeight);
 
-const ctx =
-    canvas.getContext(
-        "2d"
-    );
+  if(!force && Math.abs(w-lastWidth)<20) return;
+  lastWidth = w;
 
-let particles = [];
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  cw = w; ch = h;
 
-let canvasWidth = 0;
-let canvasHeight = 0;
-let previousWidth = 0;
+  canvas.width = Math.round(cw*dpr);
+  canvas.height = Math.round(ch*dpr);
+  canvas.style.width = cw+"px";
+  canvas.style.height = ch+"px";
+  ctx.setTransform(dpr,0,0,dpr,0,0);
 
-
-function setupCanvas(
-    force = false
-){
-
-    const width =
-        document.documentElement
-            .clientWidth;
-
-    const height =
-        Math.max(
-            window.innerHeight,
-            document.documentElement
-                .clientHeight
-        );
-
-
-    if(
-        !force &&
-        Math.abs(
-            width -
-            previousWidth
-        ) < 20
-    ){
-
-        return;
-
-    }
-
-
-    previousWidth =
-        width;
-
-
-    const dpr =
-        Math.min(
-            window.devicePixelRatio ||
-            1,
-            2
-        );
-
-
-    canvasWidth =
-        width;
-
-    canvasHeight =
-        height;
-
-
-    canvas.width =
-        Math.round(
-            canvasWidth *
-            dpr
-        );
-
-
-    canvas.height =
-        Math.round(
-            canvasHeight *
-            dpr
-        );
-
-
-    ctx.setTransform(
-        dpr,
-        0,
-        0,
-        dpr,
-        0,
-        0
-    );
-
-
-    createParticles();
-
+  dots = Array.from({length:Math.max(30,Math.floor(cw/25))},()=>({
+    x:Math.random()*cw,
+    y:Math.random()*ch,
+    vx:(Math.random()-.5)*.22,
+    vy:(Math.random()-.5)*.22,
+    r:Math.random()*.9+.35
+  }));
 }
 
+function animate(){
+  ctx.clearRect(0,0,cw,ch);
 
+  for(const p of dots){
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x<0||p.x>cw)p.vx*=-1;
+    if(p.y<0||p.y>ch)p.vy*=-1;
 
-function createParticles(){
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle="rgba(255,255,255,.68)";
+    ctx.fill();
+  }
 
-    particles = [];
-
-
-    const amount =
-        Math.max(
-            28,
-            Math.floor(
-                canvasWidth /
-                24
-            )
-        );
-
-
-    for(
-        let i = 0;
-        i < amount;
-        i++
-    ){
-
-        particles.push({
-
-            x:
-                Math.random() *
-                canvasWidth,
-
-            y:
-                Math.random() *
-                canvasHeight,
-
-            vx:
-                (
-                    Math.random() -
-                    .5
-                ) *
-                .08,
-
-            vy:
-                (
-                    Math.random() -
-                    .5
-                ) *
-                .08,
-
-            r:
-                Math.random() *
-                .9 +
-                .35
-
-        });
-
-    }
-
-}
-
-
-
-function animateParticles(){
-
-    ctx.clearRect(
-        0,
-        0,
-        canvasWidth,
-        canvasHeight
-    );
-
-
-    for(
-        const p of particles
-    ){
-
-        p.x +=
-            p.vx;
-
-        p.y +=
-            p.vy;
-
-
-        if(
-            p.x < 0 ||
-            p.x > canvasWidth
-        ){
-
-            p.vx *=
-                -1;
-
-        }
-
-
-        if(
-            p.y < 0 ||
-            p.y > canvasHeight
-        ){
-
-            p.vy *=
-                -1;
-
-        }
-
-
+  for(let i=0;i<dots.length;i++){
+    for(let j=i+1;j<dots.length;j++){
+      const a=dots[i],b=dots[j];
+      const d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<110){
         ctx.beginPath();
-
-
-        ctx.arc(
-            p.x,
-            p.y,
-            p.r,
-            0,
-            Math.PI *
-            2
-        );
-
-
-        ctx.fillStyle =
-            "rgba(255,255,255,.70)";
-
-
-        ctx.fill();
-
+        ctx.moveTo(a.x,a.y);
+        ctx.lineTo(b.x,b.y);
+        ctx.strokeStyle=`rgba(255,255,255,${(1-d/110)*.14})`;
+        ctx.lineWidth=.6;
+        ctx.stroke();
+      }
     }
+  }
 
-
-    for(
-        let i = 0;
-        i < particles.length;
-        i++
-    ){
-
-        for(
-            let j = i + 1;
-            j < particles.length;
-            j++
-        ){
-
-            const a =
-                particles[i];
-
-            const b =
-                particles[j];
-
-
-            const distance =
-                Math.hypot(
-                    a.x - b.x,
-                    a.y - b.y
-                );
-
-
-            if(
-                distance <
-                105
-            ){
-
-                const opacity =
-                    (
-                        1 -
-                        distance /
-                        105
-                    ) *
-                    .17;
-
-
-                ctx.beginPath();
-
-
-                ctx.moveTo(
-                    a.x,
-                    a.y
-                );
-
-
-                ctx.lineTo(
-                    b.x,
-                    b.y
-                );
-
-
-                ctx.strokeStyle =
-                    `rgba(255,255,255,${opacity})`;
-
-
-                ctx.lineWidth =
-                    .7;
-
-
-                ctx.stroke();
-
-            }
-
-        }
-
-    }
-
-
-    requestAnimationFrame(
-        animateParticles
-    );
-
+  requestAnimationFrame(animate);
 }
-
-
-window.addEventListener(
-    "resize",
-    () =>
-        setupCanvas(false),
-    {
-        passive:true
-    }
-);
-
-
-window.addEventListener(
-    "orientationchange",
-    () => {
-
-        setTimeout(
-            () =>
-                setupCanvas(true),
-            250
-        );
-
-    }
-);
-
-
+addEventListener("resize",()=>setupCanvas(false),{passive:true});
+addEventListener("orientationchange",()=>setTimeout(()=>setupCanvas(true),250));
 setupCanvas(true);
-
-animateParticles();
-
-
+animate();
 
 /* =========================================================
-   HELPERS
+   STATE
 ========================================================= */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
 
-const $ =
-    selector =>
-        document.querySelector(
-            selector
-        );
+const state = {
+  aimMode:"silent",
+  target:"Head",
+  fov:252,
+  showFov:true,
+  overlayEsp:false,
+  espBox:false,
+  espHealth:false,
+  espName:false,
+  espSkeleton:false,
+  chams:false,
+  boxStyle:"Cornered",
+  boxFilled:false,
+  fastMedkit:false,
+  alokMode:"Desligado",
+  alokLevel:"Lv 1",
+  attributeLevel:"Nível 4"
+};
 
+let publicIp = "—";
+let activeKey = "REMOTE-IOS-XXXXXX";
+let online = false;
+let overlayRunning = false;
 
-let token =
-    localStorage.getItem(
-        "rafaela_token"
-    ) || "";
+let sessionToken =
+  localStorage.getItem("remoteios_token") || "";
 
-
-let generatedKeys = [];
-
-let selectedKeys =
-    new Set();
-
-
-
-function toast(
-    message
-){
-
-    const element =
-        $("#toast");
-
-
-    element.textContent =
-        message;
-
-
-    element.style.display =
-        "block";
-
-
-    clearTimeout(
-        window.toastTimer
-    );
-
-
-    window.toastTimer =
-        setTimeout(
-            () => {
-
-                element.style.display =
-                    "none";
-
-            },
-            2200
-        );
-
-}
-
-
-
-async function copyText(
-    text
-){
-
-    try{
-
-        await navigator.clipboard
-            .writeText(text);
-
-    }
-    catch{
-
-        const textarea =
-            document.createElement(
-                "textarea"
-            );
-
-
-        textarea.value =
-            text;
-
-
-        textarea.style.position =
-            "fixed";
-
-        textarea.style.opacity =
-            "0";
-
-
-        document.body
-            .appendChild(
-                textarea
-            );
-
-
-        textarea.select();
-
-
-        document.execCommand(
-            "copy"
-        );
-
-
-        textarea.remove();
-
-    }
-
-}
-
-
+let currentLicense = null;
+let expiresAt = null;
 
 /* =========================================================
-   API
+   IP DETECTION
+========================================================= */
+async function detectIp(){
+  $("#loginIp").value="Detectando...";
+  try{
+    const r = await fetch("https://api.ipify.org?format=json");
+    const d = await r.json();
+    publicIp = d.ip || "—";
+  }catch{
+    publicIp = "Não detectado";
+  }
+  $("#loginIp").value=publicIp;
+  $("#infoIp").textContent=publicIp;
+}
+$("#detectIp").onclick=detectIp;
+detectIp();
+
+/* =========================================================
+   LOGIN REAL — KEY + IPV4
 ========================================================= */
 
-async function api(
-    url,
-    options = {}
-){
+function authErrorMessage(code){
+  const messages = {
+    invalid_key_format:"Formato da key inválido.",
+    invalid_ipv4:"IPv4 inválido.",
+    invalid_key:"Key inválida.",
+    disabled:"Key desativada.",
+    expired:"Key expirada.",
+    paused:"Key pausada.",
+    ipv4_mismatch:"Essa key está vinculada a outro IPv4.",
+    unauthorized:"Sessão expirada.",
+    license_invalid:"Licença inválida."
+  };
 
-    options.headers = {
+  return messages[code] || "Não foi possível entrar.";
+}
 
-        ...(options.headers || {}),
+async function remoteApi(url, options={}){
+  options.headers = {
+    ...(options.headers || {}),
+    "Content-Type":"application/json"
+  };
 
-        "Content-Type":
-            "application/json"
+  if(sessionToken){
+    options.headers.Authorization =
+      "Bearer " + sessionToken;
+  }
 
-    };
+  const response =
+    await fetch(url, options);
 
+  const data =
+    await response
+      .json()
+      .catch(()=>({}));
 
-    if(
-        token
-    ){
+  if(!response.ok){
+    const error =
+      new Error(
+        data.error ||
+        "request_failed"
+      );
 
-        options.headers.Authorization =
-            "Bearer " +
-            token;
+    error.code =
+      data.error ||
+      "request_failed";
 
-    }
+    throw error;
+  }
 
+  return data;
+}
 
-    const response =
-        await fetch(
-            url,
-            options
+function openDashboard(data){
+  activeKey =
+    data.key ||
+    activeKey;
+
+  publicIp =
+    data.ipv4 ||
+    publicIp;
+
+  currentLicense =
+    data.license ||
+    currentLicense ||
+    {};
+
+  expiresAt =
+    currentLicense.expires_at ||
+    null;
+
+  online = true;
+
+  $("#loginError").textContent="";
+
+  $("#loginPage")
+    .classList
+    .add("hidden");
+
+  $("#dashboard")
+    .classList
+    .remove("hidden");
+
+  $("#infoKey").textContent =
+    activeKey;
+
+  $("#infoIp").textContent =
+    publicIp;
+
+  $("#infoPlan").textContent =
+    currentLicense.plan === "lifetime"
+      ? "Lifetime"
+      : (
+          currentLicense.plan
+            ? currentLicense.plan + " dia" +
+              (
+                String(currentLicense.plan) === "1"
+                  ? ""
+                  : "s"
+              )
+            : "—"
         );
 
+  $("#onlineText").textContent =
+    "Online";
+
+  $(".status-dot").style.background =
+    "#35e28c";
+
+  updateRemaining();
+
+  window.scrollTo(0,0);
+}
+
+function logoutRemote(){
+  sessionToken = "";
+  currentLicense = null;
+  expiresAt = null;
+  online = false;
+
+  localStorage.removeItem(
+    "remoteios_token"
+  );
+
+  $("#dashboard")
+    .classList
+    .add("hidden");
+
+  $("#loginPage")
+    .classList
+    .remove("hidden");
+
+  $("#onlineText").textContent =
+    "Offline";
+
+  $(".status-dot").style.background =
+    "#ff5b5b";
+
+  window.scrollTo(0,0);
+}
+
+$("#enterBtn").onclick =
+async () => {
+  const key =
+    $("#loginKey")
+      .value
+      .trim()
+      .toUpperCase();
+
+  const ipv4 =
+    $("#loginIp")
+      .value
+      .trim();
+
+  $("#loginError").textContent="";
+
+  if(
+    !/^REMOTE-IOS-[A-Z0-9]{6}$/.test(
+      key
+    )
+  ){
+    $("#loginError").textContent =
+      "Digite uma key válida.";
+    return;
+  }
+
+  try{
+    $("#enterBtn").disabled = true;
+    $("#enterBtn").textContent =
+      "Validando...";
 
     const data =
-        await response
-        .json()
-        .catch(
-            () => ({})
-        );
+      await remoteApi(
+        "/api/auth/activate",
+        {
+          method:"POST",
 
+          body:
+            JSON.stringify({
+              key,
+              ipv4
+            })
+        }
+      );
 
-    if(
-        response.status === 401 &&
-        url !==
-        "/api/admin/login"
-    ){
+    sessionToken =
+      data.token;
 
-        logout();
+    localStorage.setItem(
+      "remoteios_token",
+      sessionToken
+    );
 
+    openDashboard(data);
+  }
+  catch(error){
+    $("#loginError").textContent =
+      authErrorMessage(
+        error.code
+      );
+  }
+  finally{
+    $("#enterBtn").disabled = false;
+    $("#enterBtn").textContent =
+      "Entrar";
+  }
+};
 
-        throw new Error(
-            "Sessão expirada"
-        );
+$("#logoutBtn").onclick =
+  logoutRemote;
 
-    }
+(async()=>{
+  if(!sessionToken){
+    return;
+  }
 
+  try{
+    const data =
+      await remoteApi(
+        "/api/auth/me"
+      );
 
-    if(
-        !response.ok
-    ){
+    activeKey =
+      data.key;
 
-        throw new Error(
-            data.message ||
-            data.error ||
-            "Erro"
-        );
+    publicIp =
+      data.ipv4;
 
-    }
-
-
-    return data;
-
-}
-
-
+    openDashboard(data);
+  }
+  catch{
+    logoutRemote();
+  }
+})();
 
 /* =========================================================
-   LOGIN
+   NAV
 ========================================================= */
+function showPage(name){
+  $$(".tab-page").forEach(p=>p.classList.add("hidden"));
+  $("#page"+name).classList.remove("hidden");
 
-function showDashboard(){
-
-    $("#loginScreen")
-        .classList
-        .add(
-            "hidden"
-        );
-
-
-    $("#dashboard")
-        .classList
-        .remove(
-            "hidden"
-        );
-
-
-    window.scrollTo(
-        0,
-        0
-    );
-
-
-    loadKeys();
-
+  $$(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
+  window.scrollTo(0,0);
 }
-
-
-
-function showLogin(){
-
-    $("#dashboard")
-        .classList
-        .add(
-            "hidden"
-        );
-
-
-    $("#loginScreen")
-        .classList
-        .remove(
-            "hidden"
-        );
-
-
-    window.scrollTo(
-        0,
-        0
-    );
-
-}
-
-
-
-function logout(){
-
-    token =
-        "";
-
-
-    localStorage.removeItem(
-        "rafaela_token"
-    );
-
-
-    showLogin();
-
-}
-
-
-
-$("#loginButton")
-.onclick =
-async () => {
-
-
-    $("#loginError")
-        .textContent =
-        "";
-
-
-    try{
-
-
-        const data =
-            await api(
-                "/api/admin/login",
-                {
-
-                    method:
-                        "POST",
-
-                    body:
-                        JSON.stringify({
-
-                            username:
-                                $("#username")
-                                .value,
-
-                            password:
-                                $("#password")
-                                .value
-
-                        })
-
-                }
-            );
-
-
-        token =
-            data.token;
-
-
-        localStorage.setItem(
-            "rafaela_token",
-            token
-        );
-
-
-        showDashboard();
-
-
-    }
-    catch{
-
-
-        $("#loginError")
-            .textContent =
-            "Usuário ou senha inválidos.";
-
-
-    }
-
-};
-
-
-$("#logoutButton")
-.onclick =
-    logout;
-
-
+$$(".nav-btn").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
 
 /* =========================================================
-   GERAR
+   AIM
 ========================================================= */
+$$(".mode-card").forEach(card=>{
+  card.onclick=()=>{
+    const mode=card.dataset.mode;
 
-$("#plan")
-.onchange =
-() => {
-
-
-    $("#customDaysWrap")
-        .classList
-        .toggle(
-
-            "hidden",
-
-            $("#plan")
-                .value !==
-                "custom"
-
-        );
-
-};
-
-
-
-$("#generateButton")
-.onclick =
-async () => {
-
-
-    try{
-
-
-        const data =
-            await api(
-                "/api/keys/generate",
-                {
-
-                    method:
-                        "POST",
-
-                    body:
-                        JSON.stringify({
-
-                            plan:
-                                $("#plan")
-                                .value,
-
-                            customDays:
-                                $("#customDays")
-                                .value,
-
-                            quantity:
-                                $("#quantity")
-                                .value,
-
-                            note:
-                                $("#note")
-                                .value
-
-                        })
-
-                }
-            );
-
-
-        generatedKeys =
-            data.keys;
-
-
-        $("#generated")
-            .textContent =
-            generatedKeys.join(
-                "\n"
-            );
-
-
-        $("#copyGenerated")
-            .disabled =
-            generatedKeys.length ===
-            0;
-
-
-        toast(
-            generatedKeys.length +
-            " key(s) gerada(s)"
-        );
-
-
-        loadKeys();
-
-
-    }
-    catch(
-        error
-    ){
-
-
-        toast(
-            error.message
-        );
-
-
+    if(state.aimMode===mode){
+      state.aimMode=null;
+      card.classList.remove("active");
+      $("#aimModeState").textContent="Desligado";
+      return;
     }
 
+    state.aimMode=mode;
+    $$(".mode-card").forEach(c=>c.classList.remove("active"));
+    card.classList.add("active");
+    $("#aimModeState").textContent=mode==="silent"?"Aim Silent ativo":"Aimbot ativo";
+  };
+});
+
+$("#targetSelect").onchange=e=>state.target=e.target.value;
+$("#fovRange").oninput=e=>{
+  state.fov=Number(e.target.value);
+  $("#fovValue").textContent=state.fov+"°";
 };
-
-
-
-$("#copyGenerated")
-.onclick =
-async () => {
-
-
-    if(
-        !generatedKeys.length
-    ){
-
-        return;
-
-    }
-
-
-    await copyText(
-        generatedKeys.join(
-            "\n"
-        )
-    );
-
-
-    toast(
-        "Keys geradas copiadas"
-    );
-
-};
-
-
 
 /* =========================================================
-   FORMATAÇÃO
+   TOGGLES
 ========================================================= */
+$$(".toggle").forEach(t=>{
+  t.onclick=()=>{
+    t.classList.toggle("on");
+    state[t.dataset.toggle]=t.classList.contains("on");
+  };
+});
 
-function escapeHTML(
-    value
-){
+$("#boxStyle").onchange=e=>state.boxStyle=e.target.value;
+$("#alokMode").onchange=e=>state.alokMode=e.target.value;
+$("#alokLevel").onchange=e=>state.alokLevel=e.target.value;
+$("#attributeLevel").onchange=e=>state.attributeLevel=e.target.value;
 
-    return String(
-        value ?? ""
-    )
-    .replace(
-        /[&<>"']/g,
-        character =>
-            ({
+$("#disableAll").onclick=()=>{
+  Object.keys(state).forEach(k=>{
+    if(typeof state[k]==="boolean") state[k]=false;
+  });
+  state.aimMode=null;
+  $$(".toggle").forEach(t=>t.classList.remove("on"));
+  $$(".mode-card").forEach(c=>c.classList.remove("active"));
+  $("#aimModeState").textContent="Desligado";
+};
 
-                "&":
-                    "&amp;",
+/* =========================================================
+   OVERLAY
+========================================================= */
+$("#startOverlay").onclick=()=>{
+  overlayRunning=!overlayRunning;
+  $("#overlayDemo").classList.toggle("on",overlayRunning);
+  $("#overlayReady").textContent=overlayRunning?"Overlay ativo":"Pronto para iniciar";
+  $("#startOverlay").textContent=overlayRunning?"Stop ESP":"Start ESP";
+};
 
-                "<":
-                    "&lt;",
-
-                ">":
-                    "&gt;",
-
-                '"':
-                    "&quot;",
-
-                "'":
-                    "&#39;"
-
-            })[
-                character
-            ]
-    );
-
+function openOverlayView(){
+  $("#overlayView").classList.remove("hidden");
+  history.pushState({overlay:true},"","/overlay-view");
+}
+function closeOverlayView(){
+  $("#overlayView").classList.add("hidden");
+  if(location.pathname==="/overlay-view"){
+    history.pushState({},"","/");
+  }
+}
+$("#fullOverlay").onclick=openOverlayView;
+$("#closeOverlayView").onclick=closeOverlayView;
+addEventListener("popstate",()=>{
+  $("#overlayView").classList.toggle("hidden",location.pathname!=="/overlay-view");
+});
+if(location.pathname==="/overlay-view"){
+  $("#loginPage").classList.add("hidden");
+  $("#dashboard").classList.add("hidden");
+  $("#overlayView").classList.remove("hidden");
 }
 
+/* =========================================================
+   INFO TIMER
+========================================================= */
 
+function updateRemaining(){
+  if(!$("#remaining")){
+    return;
+  }
 
-function formatDate(
-    timestamp
-){
+  if(!expiresAt){
+    $("#remaining").textContent =
+      currentLicense?.plan === "lifetime"
+        ? "Lifetime"
+        : "—";
+    return;
+  }
 
-    if(
-        !timestamp
-    ){
-
-        return "—";
-
-    }
-
-
-    return new Date(
-        Number(timestamp)
-    )
-    .toLocaleString(
-        "pt-BR"
+  const remainingMs =
+    Math.max(
+      0,
+      Number(expiresAt) -
+      Date.now()
     );
 
+  const totalSeconds =
+    Math.floor(
+      remainingMs / 1000
+    );
+
+  const days =
+    Math.floor(
+      totalSeconds / 86400
+    );
+
+  const hours =
+    Math.floor(
+      (
+        totalSeconds %
+        86400
+      ) / 3600
+    );
+
+  const minutes =
+    Math.floor(
+      (
+        totalSeconds %
+        3600
+      ) / 60
+    );
+
+  const seconds =
+    totalSeconds %
+    60;
+
+  $("#remaining").textContent =
+    days > 0
+      ? `${days}d ${hours}h ${minutes}m ${seconds}s`
+      : `${hours}h ${minutes}m ${seconds}s`;
 }
 
-
-
-function updateSelectionUi(){
-
-    const size =
-        selectedKeys.size;
-
-
-    $("#selectedCount")
-        .textContent =
-        size +
-        " selecionada(s)";
-
-
-    $("#copySelected")
-        .disabled =
-        size === 0;
-
-
-    const checkboxes =
-        [
-            ...document
-                .querySelectorAll(
-                    ".key-check"
-                )
-        ];
-
-
-    $("#selectAll")
-        .checked =
-        checkboxes.length > 0 &&
-        checkboxes.every(
-            checkbox =>
-                checkbox.checked
-        );
-
-}
-
-
-
-/* =========================================================
-   LISTAR KEYS
-========================================================= */
-
-async function loadKeys(){
-
-    try{
-
-
-        const params =
-            new URLSearchParams();
-
-
-        if(
-            $("#search")
-                .value
-        ){
-
-            params.set(
-                "q",
-                $("#search")
-                    .value
-            );
-
-        }
-
-
-        if(
-            $("#status")
-                .value
-        ){
-
-            params.set(
-                "status",
-                $("#status")
-                    .value
-            );
-
-        }
-
-
-        const data =
-            await api(
-                "/api/keys?" +
-                params
-            );
-
-
-        selectedKeys.clear();
-
-
-        $("#selectAll")
-            .checked =
-            false;
-
-
-        $("#resultCount")
-            .textContent =
-            data.keys.length +
-            " resultado(s)";
-
-
-        $("#rows")
-            .innerHTML =
-            data.keys
-            .map(
-                key =>
-`
-<tr>
-
-    <td
-        data-label="SELECIONAR"
-        class="select-cell"
-    >
-
-        <input
-            class="check key-check"
-            type="checkbox"
-            value="${escapeHTML(
-                key.license_key
-            )}"
-        >
-
-    </td>
-
-
-    <td data-label="KEY">
-
-        <strong>
-            ${escapeHTML(
-                key.license_key
-            )}
-        </strong>
-
-    </td>
-
-
-    <td data-label="PLANO">
-
-        ${escapeHTML(
-            key.plan
-        )}
-
-    </td>
-
-
-    <td data-label="STATUS">
-
-        <span class="status">
-
-            ${escapeHTML(
-                key.status
-            )}
-
-        </span>
-
-    </td>
-
-
-    <td data-label="EXPIRA">
-
-        ${formatDate(
-            key.expires_at
-        )}
-
-    </td>
-
-
-    <td data-label="IPV4">
-
-        ${
-            key.bound_ipv4
-                ?
-                escapeHTML(
-                    key.bound_ipv4
-                )
-                :
-                "—"
-        }
-
-    </td>
-
-
-    <td
-        data-label="AÇÕES"
-        class="actions-cell"
-    >
-
-        ${
-            key.status ===
-            "active"
-
-            ?
-
-`
-<button
-    class="action"
-    onclick="keyAction(
-        '${key.license_key}',
-        'pause'
-    )"
->
-    Pausar
-</button>
-`
-
-            :
-
-            ""
-        }
-
-
-        ${
-            key.status ===
-            "paused"
-
-            ?
-
-`
-<button
-    class="action"
-    onclick="keyAction(
-        '${key.license_key}',
-        'resume'
-    )"
->
-    Retomar
-</button>
-`
-
-            :
-
-            ""
-        }
-
-
-        <button
-            class="action"
-            onclick="resetIpv4(
-                '${key.license_key}'
-            )"
-        >
-            Reset IPv4
-        </button>
-
-
-        <button
-            class="action"
-            onclick="resetKey(
-                '${key.license_key}'
-            )"
-        >
-            Reset key
-        </button>
-
-
-        <button
-            class="action"
-            onclick="addHours(
-                '${key.license_key}'
-            )"
-        >
-            + Horas
-        </button>
-
-
-        ${
-            key.status ===
-            "disabled"
-
-            ?
-
-`
-<button
-    class="action"
-    onclick="keyAction(
-        '${key.license_key}',
-        'enable'
-    )"
->
-    Ativar
-</button>
-`
-
-            :
-
-`
-<button
-    class="action"
-    onclick="keyAction(
-        '${key.license_key}',
-        'disable'
-    )"
->
-    Desativar
-</button>
-`
-        }
-
-
-        <button
-            class="action"
-            onclick="deleteKey(
-                '${key.license_key}'
-            )"
-        >
-            Excluir
-        </button>
-
-    </td>
-
-</tr>
-`
-            )
-            .join("");
-
-
-        document
-            .querySelectorAll(
-                ".key-check"
-            )
-            .forEach(
-                checkbox => {
-
-                    checkbox
-                        .addEventListener(
-                            "change",
-                            () => {
-
-                                if(
-                                    checkbox.checked
-                                ){
-
-                                    selectedKeys.add(
-                                        checkbox.value
-                                    );
-
-                                }
-                                else{
-
-                                    selectedKeys.delete(
-                                        checkbox.value
-                                    );
-
-                                }
-
-
-                                updateSelectionUi();
-
-                            }
-                        );
-
-                }
-            );
-
-
-        updateSelectionUi();
-
-
-    }
-    catch(
-        error
-    ){
-
-
-        toast(
-            error.message
-        );
-
-
-    }
-
-}
-
-
-
-/* =========================================================
-   MULTISELECT / COPIAR
-========================================================= */
-
-$("#selectAll")
-.onchange =
-() => {
-
-
-    const checked =
-        $("#selectAll")
-            .checked;
-
-
-    selectedKeys.clear();
-
-
-    document
-        .querySelectorAll(
-            ".key-check"
-        )
-        .forEach(
-            checkbox => {
-
-                checkbox.checked =
-                    checked;
-
-
-                if(
-                    checked
-                ){
-
-                    selectedKeys.add(
-                        checkbox.value
-                    );
-
-                }
-
-            }
-        );
-
-
-    updateSelectionUi();
-
-};
-
-
-
-$("#copySelected")
-.onclick =
-async () => {
-
-
-    if(
-        selectedKeys.size ===
-        0
-    ){
-
-        return;
-
-    }
-
-
-    await copyText(
-        [
-            ...selectedKeys
-        ]
-        .join(
-            "\n"
-        )
-    );
-
-
-    toast(
-        selectedKeys.size +
-        " key(s) copiadas"
-    );
-
-};
-
-
-
-/* =========================================================
-   AÇÕES
-========================================================= */
-
-window.keyAction =
-async (
-    key,
-    action
-) => {
-
-
-    try{
-
-
-        await api(
-
-            "/api/keys/" +
-            encodeURIComponent(
-                key
-            ) +
-            "/" +
-            action,
-
-            {
-                method:
-                    "POST"
-            }
-
-        );
-
-
-        toast(
-            "Atualizado"
-        );
-
-
-        loadKeys();
-
-
-    }
-    catch(
-        error
-    ){
-
-
-        toast(
-            error.message
-        );
-
-
-    }
-
-};
-
-
-
-window.resetIpv4 =
-async key => {
-
-
-    if(
-        !confirm(
-            "Resetar o IPv4 vinculado desta key?"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    try{
-
-
-        await api(
-
-            "/api/keys/" +
-            encodeURIComponent(
-                key
-            ) +
-            "/reset-ipv4",
-
-            {
-                method:
-                    "POST"
-            }
-
-        );
-
-
-        toast(
-            "IPv4 resetado"
-        );
-
-
-        loadKeys();
-
-
-    }
-    catch(
-        error
-    ){
-
-
-        toast(
-            error.message
-        );
-
-
-    }
-
-};
-
-
-
-window.resetKey =
-async key => {
-
-
-    if(
-        !confirm(
-            "Gerar uma nova key mantendo o tempo/status atual?"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    try{
-
-
-        const data =
-            await api(
-
-                "/api/keys/" +
-                encodeURIComponent(
-                    key
-                ) +
-                "/reset-key",
-
-                {
-                    method:
-                        "POST"
-                }
-
-            );
-
-
-        await copyText(
-            data.new_key
-        );
-
-
-        toast(
-            "Nova key criada e copiada"
-        );
-
-
-        loadKeys();
-
-
-    }
-    catch(
-        error
-    ){
-
-
-        toast(
-            error.message
-        );
-
-
-    }
-
-};
-
-
-
-window.addHours =
-async key => {
-
-
-    const answer =
-        prompt(
-            "Quantas horas deseja adicionar?"
-        );
-
-
-    if(
-        answer ===
-        null
-    ){
-
-        return;
-
-    }
-
-
-    const hours =
-        Number(answer);
-
-
-    if(
-        !Number.isFinite(hours) ||
-        hours <= 0
-    ){
-
-        toast(
-            "Quantidade de horas inválida"
-        );
-
-        return;
-
-    }
-
-
-    try{
-
-
-        await api(
-
-            "/api/keys/" +
-                encodeURIComponent(
-                    key
-                ) +
-                "/add-hours",
-
-            {
-                method:
-                    "POST",
-
-                body:
-                    JSON.stringify({
-                        hours
-                    })
-            }
-
-        );
-
-
-        toast(
-            `${hours} hora(s) adicionada(s)`
-        );
-
-
-        loadKeys();
-
-
-    }
-    catch(
-        error
-    ){
-
-
-        if(
-            error.message ===
-            "lifetime_key"
-        ){
-
-            toast(
-                "Essa key é lifetime"
-            );
-
-            return;
-
-        }
-
-
-        toast(
-            error.message
-        );
-
-
-    }
-
-};
-
-
-
-window.deleteKey =
-async key => {
-
-
-    if(
-        !confirm(
-            "Excluir " +
-            key +
-            "?"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    try{
-
-
-        await api(
-
-            "/api/keys/" +
-            encodeURIComponent(
-                key
-            ),
-
-            {
-                method:
-                    "DELETE"
-            }
-
-        );
-
-
-        toast(
-            "Key excluída"
-        );
-
-
-        loadKeys();
-
-
-    }
-    catch(
-        error
-    ){
-
-
-        toast(
-            error.message
-        );
-
-
-    }
-
-};
-
-
-
-/* =========================================================
-   FILTROS
-========================================================= */
-
-$("#refresh")
-.onclick =
-    loadKeys;
-
-
-$("#status")
-.onchange =
-    loadKeys;
-
-
-$("#search")
-.oninput =
-() => {
-
-
-    clearTimeout(
-        window.searchDelay
-    );
-
-
-    window.searchDelay =
-        setTimeout(
-            loadKeys,
-            250
-        );
-
-};
-
-
-
-/* =========================================================
-   RESTAURAR SESSÃO
-========================================================= */
-
-(
-    async () => {
-
-
-        if(
-            !token
-        ){
-
-            showLogin();
-
-            return;
-
-        }
-
-
-        try{
-
-
-            await api(
-                "/api/admin/me"
-            );
-
-
-            showDashboard();
-
-
-        }
-        catch{
-
-
-            showLogin();
-
-
-        }
-
-
-    }
-)();
+setInterval(
+  updateRemaining,
+  1000
+);
+
+updateRemaining();
 
 </script>
-
 </body>
 </html>
