@@ -1,0 +1,2837 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Rafaela - Generator Remote iOS</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================
+           FUNDO ANIMADO
+        ===================================== */
+
+        #particles {
+            position: fixed;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            z-index: 0;
+
+            pointer-events: none;
+        }
+
+
+        .page {
+            position: relative;
+
+            z-index: 1;
+
+            width: 100%;
+            min-height: 100vh;
+        }
+
+
+
+        /* =====================================
+           LOGIN
+        ===================================== */
+
+        .login-screen {
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: flex-start;
+
+            padding:
+                34px
+                20px
+                45px;
+        }
+
+
+        .login-content {
+            width: 100%;
+
+            max-width: 430px;
+
+            text-align: center;
+        }
+
+
+
+        /* =====================================
+           LOGO
+        ===================================== */
+
+        .logo {
+            width: 64px;
+            height: 64px;
+
+            margin:
+                0
+                auto
+                14px;
+
+            border-radius: 18px;
+
+            display: grid;
+
+            place-items: center;
+
+            position: relative;
+
+            background:
+                radial-gradient(
+                    circle at 62% 35%,
+                    #ececec 0 8%,
+                    #7d7d7d 9%,
+                    #181818 29%,
+                    #050505 64%
+                );
+
+            border:
+                1px solid
+                #202020;
+
+            box-shadow:
+                0 0 26px
+                rgba(255,255,255,.07);
+
+            overflow: hidden;
+        }
+
+
+        .logo::before {
+            content: "";
+
+            position: absolute;
+
+            width: 30px;
+            height: 9px;
+
+            background:
+                #e9e9e9;
+
+            border-radius: 50%;
+
+            transform:
+                rotate(-8deg);
+
+            top: 24px;
+            left: 17px;
+
+            box-shadow:
+                inset
+                0
+                -3px
+                5px
+                #666;
+        }
+
+
+        .logo::after {
+            content: "";
+
+            position: absolute;
+
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background:
+                #111;
+
+            top: 26px;
+            left: 30px;
+
+            box-shadow:
+                0 0 7px
+                rgba(255,255,255,.55);
+        }
+
+
+        .logo span {
+            position: absolute;
+
+            width: 2px;
+            height: 23px;
+
+            background:
+                linear-gradient(
+                    #d62442,
+                    transparent
+                );
+
+            top: 31px;
+            left: 32px;
+
+            transform:
+                rotate(4deg);
+
+            opacity: .8;
+        }
+
+
+
+        /* =====================================
+           HEADER LOGIN
+        ===================================== */
+
+        .small-title {
+            color:
+                #666;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                2px;
+
+            margin-bottom:
+                13px;
+        }
+
+
+        .main-title {
+            font-size:
+                34px;
+
+            line-height:
+                1;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                -1.5px;
+
+            margin-bottom:
+                11px;
+        }
+
+
+        .description {
+            max-width:
+                360px;
+
+            margin:
+                0
+                auto
+                27px;
+
+            color:
+                #626262;
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
+
+            line-height:
+                1.45;
+        }
+
+
+
+        /* =====================================
+           CARD LOGIN
+        ===================================== */
+
+        .login-card {
+            width:
+                100%;
+
+            background:
+                rgba(
+                    12,
+                    12,
+                    12,
+                    .96
+                );
+
+            border:
+                1px solid
+                #2b2b2b;
+
+            border-radius:
+                20px;
+
+            padding:
+                20px;
+
+            text-align:
+                left;
+
+            box-shadow:
+                0
+                20px
+                65px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    .75
+                );
+        }
+
+
+
+        /* =====================================
+           CAMPOS
+        ===================================== */
+
+        .field {
+            margin-bottom:
+                15px;
+        }
+
+
+        .field label {
+            display:
+                block;
+
+            color:
+                #707070;
+
+            font-size:
+                10px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                1.7px;
+
+            margin-bottom:
+                6px;
+        }
+
+
+        .field input,
+        .field select {
+            width:
+                100%;
+
+            height:
+                45px;
+
+            border-radius:
+                11px;
+
+            border:
+                1px solid
+                #292929;
+
+            background:
+                #020202;
+
+            padding:
+                0
+                14px;
+
+            color:
+                #f5f5f5;
+
+            font-size:
+                13px;
+
+            outline:
+                none;
+
+            transition:
+                .2s;
+        }
+
+
+        .field input::placeholder {
+            color:
+                #363636;
+        }
+
+
+        .field input:focus,
+        .field select:focus {
+            border-color:
+                #484848;
+        }
+
+
+
+        /* =====================================
+           BOTÕES
+        ===================================== */
+
+        .login-button,
+        .main-button {
+            width:
+                100%;
+
+            height:
+                46px;
+
+            border:
+                none;
+
+            border-radius:
+                11px;
+
+            background:
+                #f4f4f4;
+
+            color:
+                #080808;
+
+            font-size:
+                14px;
+
+            font-weight:
+                900;
+
+            cursor:
+                pointer;
+
+            transition:
+                .15s;
+        }
+
+
+        .login-button:hover,
+        .main-button:hover {
+            background:
+                #fff;
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .login-button:active,
+        .main-button:active {
+            transform:
+                scale(.99);
+        }
+
+
+
+        /* =====================================
+           ERRO LOGIN
+        ===================================== */
+
+        .login-error {
+            display:
+                block;
+
+            min-height:
+                17px;
+
+            margin-top:
+                9px;
+
+            text-align:
+                center;
+
+            color:
+                #a84949;
+
+            font-size:
+                11px;
+        }
+
+
+
+        /* =====================================
+           RODAPÉ
+        ===================================== */
+
+        .support {
+            margin-top:
+                20px;
+
+            color:
+                #414141;
+
+            font-size:
+                10px;
+        }
+
+
+
+        /* =====================================
+           GLOBAL
+        ===================================== */
+
+        .hidden {
+            display:
+                none !important;
+        }
+
+
+
+        /* =====================================
+           DASHBOARD
+        ===================================== */
+
+        .dashboard {
+            width:
+                100%;
+
+            min-height:
+                100vh;
+
+            padding:
+                34px
+                22px
+                60px;
+        }
+
+
+        .dashboard-wrap {
+            width:
+                100%;
+
+            max-width:
+                1080px;
+
+            margin:
+                auto;
+        }
+
+
+
+        /* =====================================
+           HEADER DASHBOARD
+        ===================================== */
+
+        .dashboard-header {
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom:
+                26px;
+        }
+
+
+        .dashboard-brand {
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+        }
+
+
+        .mini-logo {
+            width:
+                42px;
+
+            height:
+                42px;
+
+            border-radius:
+                12px;
+
+            background:
+                #101010;
+
+            border:
+                1px solid
+                #292929;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            font-size:
+                17px;
+
+            font-weight:
+                900;
+        }
+
+
+        .dashboard-brand h1 {
+            font-size:
+                21px;
+
+            font-weight:
+                900;
+        }
+
+
+        .dashboard-brand p {
+            color:
+                #555;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1.6px;
+
+            margin-top:
+                3px;
+        }
+
+
+        .logout {
+            width:
+                auto;
+
+            height:
+                38px;
+
+            padding:
+                0
+                16px;
+
+            border-radius:
+                10px;
+
+            border:
+                1px solid
+                #292929;
+
+            background:
+                #0d0d0d;
+
+            color:
+                #aaa;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+        }
+
+
+
+        /* =====================================
+           GRID DASHBOARD
+        ===================================== */
+
+        .dashboard-grid {
+            display:
+                grid;
+
+            grid-template-columns:
+                320px
+                minmax(
+                    0,
+                    1fr
+                );
+
+            gap:
+                17px;
+        }
+
+
+
+        /* =====================================
+           PAINEL
+        ===================================== */
+
+        .panel {
+            background:
+                rgba(
+                    11,
+                    11,
+                    11,
+                    .95
+                );
+
+            border:
+                1px solid
+                #292929;
+
+            border-radius:
+                19px;
+
+            padding:
+                20px;
+        }
+
+
+        .panel-top {
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                flex-start;
+
+            margin-bottom:
+                20px;
+        }
+
+
+        .panel-tag {
+            color:
+                #555;
+
+            font-size:
+                9px;
+
+            font-weight:
+                900;
+
+            letter-spacing:
+                2px;
+        }
+
+
+        .panel h2 {
+            margin-top:
+                4px;
+
+            font-size:
+                19px;
+        }
+
+
+        .online {
+            color:
+                #555;
+
+            font-size:
+                9px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1px;
+        }
+
+
+        .online::before {
+            content:
+                "";
+
+            display:
+                inline-block;
+
+            width:
+                5px;
+
+            height:
+                5px;
+
+            border-radius:
+                50%;
+
+            background:
+                #aaa;
+
+            margin-right:
+                5px;
+        }
+
+
+
+        /* =====================================
+           OUTPUT
+        ===================================== */
+
+        .generator-output {
+            min-height:
+                87px;
+
+            margin-top:
+                14px;
+
+            padding:
+                12px;
+
+            border:
+                1px solid
+                #222;
+
+            border-radius:
+                11px;
+
+            background:
+                #020202;
+
+            color:
+                #777;
+
+            font-family:
+                Consolas,
+                monospace;
+
+            font-size:
+                11px;
+
+            white-space:
+                pre-wrap;
+
+            word-break:
+                break-all;
+        }
+
+
+
+        /* =====================================
+           FILTROS
+        ===================================== */
+
+        .filters {
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr
+                125px
+                90px;
+
+            gap:
+                7px;
+
+            margin-bottom:
+                13px;
+        }
+
+
+        .filters input,
+        .filters select {
+            height:
+                39px;
+
+            border-radius:
+                9px;
+
+            border:
+                1px solid
+                #282828;
+
+            background:
+                #020202;
+
+            color:
+                #aaa;
+
+            padding:
+                0
+                11px;
+
+            font-size:
+                11px;
+
+            outline:
+                none;
+        }
+
+
+        .refresh {
+            border:
+                1px solid
+                #292929;
+
+            background:
+                #111;
+
+            color:
+                #bbb;
+
+            border-radius:
+                9px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+        }
+
+
+
+        /* =====================================
+           TABELA
+        ===================================== */
+
+        .table-wrap {
+            width:
+                100%;
+
+            overflow:
+                auto;
+
+            border:
+                1px solid
+                #202020;
+
+            border-radius:
+                11px;
+        }
+
+
+        table {
+            width:
+                100%;
+
+            border-collapse:
+                collapse;
+
+            min-width:
+                700px;
+        }
+
+
+        thead {
+            background:
+                #080808;
+        }
+
+
+        th {
+            color:
+                #555;
+
+            font-size:
+                9px;
+
+            text-align:
+                left;
+
+            padding:
+                11px
+                9px;
+
+            letter-spacing:
+                1px;
+        }
+
+
+        td {
+            color:
+                #999;
+
+            padding:
+                10px
+                9px;
+
+            border-top:
+                1px solid
+                #202020;
+
+            font-size:
+                11px;
+        }
+
+
+        td strong {
+            color:
+                #ddd;
+        }
+
+
+        .status {
+            padding:
+                3px
+                7px;
+
+            border:
+                1px solid
+                #303030;
+
+            border-radius:
+                20px;
+        }
+
+
+
+        /* =====================================
+           AÇÕES
+        ===================================== */
+
+        .action {
+            background:
+                #111;
+
+            color:
+                #aaa;
+
+            border:
+                1px solid
+                #292929;
+
+            border-radius:
+                7px;
+
+            padding:
+                5px
+                7px;
+
+            margin:
+                2px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                9px;
+        }
+
+
+        .action:hover {
+            background:
+                #1a1a1a;
+        }
+
+
+        .result-count {
+            color:
+                #444;
+
+            font-size:
+                10px;
+        }
+
+
+
+        /* =====================================
+           TOAST
+        ===================================== */
+
+        #toast {
+            display:
+                none;
+
+            position:
+                fixed;
+
+            right:
+                22px;
+
+            bottom:
+                22px;
+
+            z-index:
+                999;
+
+            padding:
+                11px
+                16px;
+
+            border-radius:
+                10px;
+
+            background:
+                #f5f5f5;
+
+            color:
+                #050505;
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+        }
+
+
+
+        /* =====================================
+           RESPONSIVO
+        ===================================== */
+
+        @media(
+            max-width:
+            850px
+        ) {
+
+            .login-screen {
+                padding-top:
+                    28px;
+            }
+
+
+            .login-content {
+                max-width:
+                    390px;
+            }
+
+
+            .dashboard-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .filters {
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <canvas id="particles"></canvas>
+
+
+    <div class="page">
+
+
+        <!-- =====================================
+             LOGIN
+        ===================================== -->
+
+        <section
+            id="loginScreen"
+            class="login-screen"
+        >
+
+
+            <div class="login-content">
+
+
+                <div class="logo">
+                    <span></span>
+                </div>
+
+
+                <div class="small-title">
+                    REMOTE IOS GENERATOR
+                </div>
+
+
+                <h1 class="main-title">
+                    Rafaela
+                </h1>
+
+
+                <p class="description">
+                    Gerencie suas chaves de forma rápida
+                    e centralizada.
+                </p>
+
+
+
+                <div class="login-card">
+
+
+                    <div class="field">
+
+                        <label>
+                            USUÁRIO
+                        </label>
+
+
+                        <input
+                            id="username"
+                            autocomplete="username"
+                            placeholder="Digite seu usuário"
+                        >
+
+                    </div>
+
+
+
+                    <div class="field">
+
+                        <label>
+                            SENHA
+                        </label>
+
+
+                        <input
+                            id="password"
+                            type="password"
+                            autocomplete="current-password"
+                            placeholder="Digite sua senha"
+                        >
+
+                    </div>
+
+
+
+                    <button
+                        id="loginButton"
+                        class="login-button"
+                    >
+                        Entrar
+                    </button>
+
+
+                    <small
+                        id="loginError"
+                        class="login-error"
+                    ></small>
+
+
+                </div>
+
+
+
+                <p class="support">
+                    Remote IOS Generator
+                </p>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             DASHBOARD
+        ===================================== -->
+
+        <section
+            id="dashboard"
+            class="dashboard hidden"
+        >
+
+
+            <div class="dashboard-wrap">
+
+
+                <header class="dashboard-header">
+
+
+                    <div class="dashboard-brand">
+
+
+                        <div class="mini-logo">
+                            R
+                        </div>
+
+
+                        <div>
+
+                            <h1>
+                                Generator
+                            </h1>
+
+                            <p>
+                                REMOTE IOS
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <button
+                        id="logoutButton"
+                        class="logout"
+                    >
+                        Sair
+                    </button>
+
+
+                </header>
+
+
+
+                <div class="dashboard-grid">
+
+
+                    <!-- =========================
+                         GERADOR
+                    ========================== -->
+
+                    <div class="panel">
+
+
+                        <div class="panel-top">
+
+
+                            <div>
+
+                                <span class="panel-tag">
+                                    GENERATOR
+                                </span>
+
+                                <h2>
+                                    Gerar keys
+                                </h2>
+
+                            </div>
+
+
+                            <div class="online">
+                                ONLINE
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="field">
+
+                            <label>
+                                PLANO
+                            </label>
+
+
+                            <select id="plan">
+
+                                <option value="1">
+                                    1 dia
+                                </option>
+
+                                <option value="7">
+                                    7 dias
+                                </option>
+
+                                <option value="30">
+                                    30 dias
+                                </option>
+
+                                <option value="lifetime">
+                                    Lifetime
+                                </option>
+
+                                <option value="custom">
+                                    Custom
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <div
+                            id="customDaysWrap"
+                            class="field hidden"
+                        >
+
+                            <label>
+                                DIAS
+                            </label>
+
+
+                            <input
+                                id="customDays"
+                                type="number"
+                                min="1"
+                                value="1"
+                            >
+
+                        </div>
+
+
+
+                        <div class="field">
+
+                            <label>
+                                QUANTIDADE
+                            </label>
+
+
+                            <input
+                                id="quantity"
+                                type="number"
+                                min="1"
+                                max="100"
+                                value="1"
+                            >
+
+                        </div>
+
+
+
+                        <div class="field">
+
+                            <label>
+                                OBSERVAÇÃO
+                            </label>
+
+
+                            <input
+                                id="note"
+                                placeholder="Opcional"
+                            >
+
+                        </div>
+
+
+
+                        <button
+                            id="generateButton"
+                            class="main-button"
+                        >
+                            Gerar REMOTE-IOS
+                        </button>
+
+
+
+                        <pre
+                            id="generated"
+                            class="generator-output"
+                        >As keys aparecerão aqui.</pre>
+
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         GERENCIAMENTO
+                    ========================== -->
+
+                    <div class="panel">
+
+
+                        <div class="panel-top">
+
+
+                            <div>
+
+                                <span class="panel-tag">
+                                    MANAGEMENT
+                                </span>
+
+                                <h2>
+                                    Keys
+                                </h2>
+
+                            </div>
+
+
+                            <div
+                                id="resultCount"
+                                class="result-count"
+                            ></div>
+
+
+                        </div>
+
+
+
+                        <div class="filters">
+
+
+                            <input
+                                id="search"
+                                placeholder="Buscar REMOTE-IOS-XXXXXX"
+                            >
+
+
+
+                            <select id="status">
+
+                                <option value="">
+                                    Todos
+                                </option>
+
+                                <option value="unused">
+                                    unused
+                                </option>
+
+                                <option value="active">
+                                    active
+                                </option>
+
+                                <option value="paused">
+                                    paused
+                                </option>
+
+                                <option value="disabled">
+                                    disabled
+                                </option>
+
+                                <option value="expired">
+                                    expired
+                                </option>
+
+                            </select>
+
+
+
+                            <button
+                                id="refresh"
+                                class="refresh"
+                            >
+                                Atualizar
+                            </button>
+
+
+                        </div>
+
+
+
+                        <div class="table-wrap">
+
+
+                            <table>
+
+
+                                <thead>
+
+
+                                    <tr>
+
+                                        <th>
+                                            KEY
+                                        </th>
+
+                                        <th>
+                                            PLANO
+                                        </th>
+
+                                        <th>
+                                            STATUS
+                                        </th>
+
+                                        <th>
+                                            EXPIRA
+                                        </th>
+
+                                        <th>
+                                            DEVICE
+                                        </th>
+
+                                        <th>
+                                            AÇÕES
+                                        </th>
+
+                                    </tr>
+
+
+                                </thead>
+
+
+
+                                <tbody id="rows"></tbody>
+
+
+                            </table>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+
+    <div id="toast"></div>
+
+
+
+    <script>
+
+        /* =====================================
+           PARTICULAS
+        ===================================== */
+
+        const canvas =
+            document.getElementById(
+                "particles"
+            );
+
+
+        const ctx =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        let particles =
+            [];
+
+
+        function resizeCanvas() {
+
+            canvas.width =
+                window.innerWidth *
+                devicePixelRatio;
+
+
+            canvas.height =
+                window.innerHeight *
+                devicePixelRatio;
+
+
+            canvas.style.width =
+                window.innerWidth +
+                "px";
+
+
+            canvas.style.height =
+                window.innerHeight +
+                "px";
+
+
+            ctx.setTransform(
+                devicePixelRatio,
+                0,
+                0,
+                devicePixelRatio,
+                0,
+                0
+            );
+
+
+            createParticles();
+
+        }
+
+
+
+        function createParticles() {
+
+            particles =
+                [];
+
+
+            const amount =
+                Math.max(
+                    35,
+                    Math.floor(
+                        window.innerWidth /
+                        25
+                    )
+                );
+
+
+            for(
+                let i = 0;
+                i < amount;
+                i++
+            ) {
+
+                particles.push({
+
+                    x:
+                        Math.random() *
+                        window.innerWidth,
+
+                    y:
+                        Math.random() *
+                        window.innerHeight,
+
+                    vx:
+                        (
+                            Math.random() -
+                            .5
+                        ) *
+                        .09,
+
+                    vy:
+                        (
+                            Math.random() -
+                            .5
+                        ) *
+                        .09,
+
+                    r:
+                        Math.random() *
+                        1 +
+                        .4
+
+                });
+
+            }
+
+        }
+
+
+
+        function animateParticles() {
+
+            ctx.clearRect(
+                0,
+                0,
+                window.innerWidth,
+                window.innerHeight
+            );
+
+
+            for(
+                const p
+                of
+                particles
+            ) {
+
+                p.x +=
+                    p.vx;
+
+
+                p.y +=
+                    p.vy;
+
+
+                if(
+                    p.x < 0 ||
+                    p.x >
+                    window.innerWidth
+                ) {
+
+                    p.vx *=
+                        -1;
+
+                }
+
+
+                if(
+                    p.y < 0 ||
+                    p.y >
+                    window.innerHeight
+                ) {
+
+                    p.vy *=
+                        -1;
+
+                }
+
+
+                ctx.beginPath();
+
+
+                ctx.arc(
+                    p.x,
+                    p.y,
+                    p.r,
+                    0,
+                    Math.PI *
+                    2
+                );
+
+
+                ctx.fillStyle =
+                    "rgba(255,255,255,.70)";
+
+
+                ctx.fill();
+
+            }
+
+
+
+            for(
+                let i = 0;
+                i <
+                particles.length;
+                i++
+            ) {
+
+
+                for(
+                    let j =
+                    i + 1;
+
+                    j <
+                    particles.length;
+
+                    j++
+                ) {
+
+
+                    const a =
+                        particles[i];
+
+
+                    const b =
+                        particles[j];
+
+
+                    const dx =
+                        a.x -
+                        b.x;
+
+
+                    const dy =
+                        a.y -
+                        b.y;
+
+
+                    const distance =
+                        Math.sqrt(
+                            dx * dx +
+                            dy * dy
+                        );
+
+
+                    if(
+                        distance <
+                        105
+                    ) {
+
+
+                        const opacity =
+                            (
+                                1 -
+                                distance /
+                                105
+                            ) *
+                            .17;
+
+
+                        ctx.beginPath();
+
+
+                        ctx.moveTo(
+                            a.x,
+                            a.y
+                        );
+
+
+                        ctx.lineTo(
+                            b.x,
+                            b.y
+                        );
+
+
+                        ctx.strokeStyle =
+                            `rgba(
+                                255,
+                                255,
+                                255,
+                                ${opacity}
+                            )`;
+
+
+                        ctx.lineWidth =
+                            .7;
+
+
+                        ctx.stroke();
+
+                    }
+
+                }
+
+            }
+
+
+            requestAnimationFrame(
+                animateParticles
+            );
+
+        }
+
+
+
+        window.addEventListener(
+            "resize",
+            resizeCanvas
+        );
+
+
+        resizeCanvas();
+
+
+        animateParticles();
+
+
+
+        /* =====================================
+           HELPERS
+        ===================================== */
+
+        const $ =
+            selector =>
+                document.querySelector(
+                    selector
+                );
+
+
+        let token =
+            localStorage.getItem(
+                "rafaela_token"
+            ) || "";
+
+
+
+        function toast(
+            message
+        ) {
+
+            const el =
+                $("#toast");
+
+
+            el.textContent =
+                message;
+
+
+            el.style.display =
+                "block";
+
+
+            clearTimeout(
+                window.toastTimer
+            );
+
+
+            window.toastTimer =
+                setTimeout(
+                    () => {
+
+                        el.style.display =
+                            "none";
+
+                    },
+                    2000
+                );
+
+        }
+
+
+
+        /* =====================================
+           API
+        ===================================== */
+
+        async function api(
+            url,
+            options = {}
+        ) {
+
+            options.headers = {
+
+                ...(options.headers || {}),
+
+                "Content-Type":
+                    "application/json"
+
+            };
+
+
+            if(
+                token
+            ) {
+
+                options.headers.Authorization =
+                    "Bearer " +
+                    token;
+
+            }
+
+
+            const response =
+                await fetch(
+                    url,
+                    options
+                );
+
+
+            const data =
+                await response
+                .json()
+                .catch(
+                    () => ({})
+                );
+
+
+            if(
+                response.status ===
+                401 &&
+                url !==
+                "/api/admin/login"
+            ) {
+
+                logout();
+
+                throw new Error(
+                    "Sessão expirada"
+                );
+
+            }
+
+
+            if(
+                !response.ok
+            ) {
+
+                throw new Error(
+                    data.error ||
+                    "Erro"
+                );
+
+            }
+
+
+            return data;
+
+        }
+
+
+
+        /* =====================================
+           LOGIN
+        ===================================== */
+
+        function showDashboard() {
+
+            $("#loginScreen")
+                .classList
+                .add(
+                    "hidden"
+                );
+
+
+            $("#dashboard")
+                .classList
+                .remove(
+                    "hidden"
+                );
+
+
+            loadKeys();
+
+        }
+
+
+
+        function showLogin() {
+
+            $("#dashboard")
+                .classList
+                .add(
+                    "hidden"
+                );
+
+
+            $("#loginScreen")
+                .classList
+                .remove(
+                    "hidden"
+                );
+
+        }
+
+
+
+        function logout() {
+
+            token =
+                "";
+
+
+            localStorage.removeItem(
+                "rafaela_token"
+            );
+
+
+            showLogin();
+
+        }
+
+
+
+        $("#loginButton")
+        .onclick =
+        async () => {
+
+
+            $("#loginError")
+                .textContent =
+                "";
+
+
+            try {
+
+
+                const data =
+                    await api(
+                        "/api/admin/login",
+                        {
+
+                            method:
+                                "POST",
+
+                            body:
+                                JSON.stringify({
+
+                                    username:
+                                        $("#username")
+                                        .value,
+
+                                    password:
+                                        $("#password")
+                                        .value
+
+                                })
+
+                        }
+                    );
+
+
+                token =
+                    data.token;
+
+
+                localStorage.setItem(
+                    "rafaela_token",
+                    token
+                );
+
+
+                showDashboard();
+
+
+            }
+            catch(
+                error
+            ) {
+
+
+                $("#loginError")
+                    .textContent =
+                    "Usuário ou senha inválidos.";
+
+
+            }
+
+        };
+
+
+        $("#logoutButton")
+            .onclick =
+            logout;
+
+
+
+        /* =====================================
+           CUSTOM PLAN
+        ===================================== */
+
+        $("#plan")
+        .onchange =
+        () => {
+
+            $("#customDaysWrap")
+                .classList
+                .toggle(
+
+                    "hidden",
+
+                    $("#plan")
+                    .value !==
+                    "custom"
+
+                );
+
+        };
+
+
+
+        /* =====================================
+           GENERATE
+        ===================================== */
+
+        $("#generateButton")
+        .onclick =
+        async () => {
+
+
+            try {
+
+
+                const data =
+                    await api(
+                        "/api/keys/generate",
+                        {
+
+                            method:
+                                "POST",
+
+                            body:
+                                JSON.stringify({
+
+                                    plan:
+                                        $("#plan")
+                                        .value,
+
+                                    customDays:
+                                        $("#customDays")
+                                        .value,
+
+                                    quantity:
+                                        $("#quantity")
+                                        .value,
+
+                                    note:
+                                        $("#note")
+                                        .value
+
+                                })
+
+                        }
+                    );
+
+
+                $("#generated")
+                    .textContent =
+                    data.keys.join(
+                        "\n"
+                    );
+
+
+                toast(
+                    data.keys.length +
+                    " key(s) gerada(s)"
+                );
+
+
+                loadKeys();
+
+
+            }
+            catch(
+                error
+            ) {
+
+
+                toast(
+                    error.message
+                );
+
+
+            }
+
+        };
+
+
+
+        /* =====================================
+           ESCAPE
+        ===================================== */
+
+        function escapeHTML(
+            value
+        ) {
+
+            return String(
+                value ?? ""
+            )
+            .replace(
+
+                /[&<>"']/g,
+
+                char =>
+                    ({
+
+                        "&":
+                            "&amp;",
+
+                        "<":
+                            "&lt;",
+
+                        ">":
+                            "&gt;",
+
+                        '"':
+                            "&quot;",
+
+                        "'":
+                            "&#39;"
+
+                    })[char]
+
+            );
+
+        }
+
+
+
+        /* =====================================
+           DATA
+        ===================================== */
+
+        function formatDate(
+            timestamp
+        ) {
+
+            if(
+                !timestamp
+            ) {
+
+                return "—";
+
+            }
+
+
+            return new Date(
+                timestamp
+            )
+            .toLocaleString(
+                "pt-BR"
+            );
+
+        }
+
+
+
+        /* =====================================
+           CARREGAR KEYS
+        ===================================== */
+
+        async function loadKeys() {
+
+            try {
+
+
+                const params =
+                    new URLSearchParams();
+
+
+
+                if(
+                    $("#search")
+                    .value
+                ) {
+
+                    params.set(
+
+                        "q",
+
+                        $("#search")
+                        .value
+
+                    );
+
+                }
+
+
+
+                if(
+                    $("#status")
+                    .value
+                ) {
+
+                    params.set(
+
+                        "status",
+
+                        $("#status")
+                        .value
+
+                    );
+
+                }
+
+
+
+                const data =
+                    await api(
+
+                        "/api/keys?" +
+                        params
+
+                    );
+
+
+
+                $("#resultCount")
+                    .textContent =
+
+                    data.keys.length +
+                    " resultado(s)";
+
+
+
+                $("#rows")
+                    .innerHTML =
+
+                    data.keys
+
+                    .map(
+
+                        key =>
+
+`
+<tr>
+
+<td>
+<strong>
+${escapeHTML(
+    key.license_key
+)}
+</strong>
+</td>
+
+
+<td>
+${escapeHTML(
+    key.plan
+)}
+</td>
+
+
+<td>
+
+<span class="status">
+
+${escapeHTML(
+    key.status
+)}
+
+</span>
+
+</td>
+
+
+<td>
+
+${formatDate(
+    key.expires_at
+)}
+
+</td>
+
+
+<td>
+
+${
+    key.device_token
+
+    ?
+
+    escapeHTML(
+        key.device_token
+        .slice(
+            0,
+            13
+        )
+    ) +
+    "…"
+
+    :
+
+    "—"
+}
+
+</td>
+
+
+<td>
+
+
+${
+    key.status ===
+    "active"
+
+    ?
+
+`
+<button
+    class="action"
+    onclick="keyAction(
+        '${key.license_key}',
+        'pause'
+    )"
+>
+Pausar
+</button>
+`
+
+    :
+
+    ""
+}
+
+
+${
+    key.status ===
+    "paused"
+
+    ?
+
+`
+<button
+    class="action"
+    onclick="keyAction(
+        '${key.license_key}',
+        'resume'
+    )"
+>
+Retomar
+</button>
+`
+
+    :
+
+    ""
+}
+
+
+<button
+    class="action"
+    onclick="keyAction(
+        '${key.license_key}',
+        'reset-device'
+    )"
+>
+Reset device
+</button>
+
+
+${
+    key.status ===
+    "disabled"
+
+    ?
+
+`
+<button
+    class="action"
+    onclick="keyAction(
+        '${key.license_key}',
+        'enable'
+    )"
+>
+Ativar
+</button>
+`
+
+    :
+
+`
+<button
+    class="action"
+    onclick="keyAction(
+        '${key.license_key}',
+        'disable'
+    )"
+>
+Desativar
+</button>
+`
+}
+
+
+<button
+    class="action"
+    onclick="deleteKey(
+        '${key.license_key}'
+    )"
+>
+Excluir
+</button>
+
+
+</td>
+
+</tr>
+`
+
+                    )
+
+                    .join("");
+
+
+
+            }
+            catch(
+                error
+            ) {
+
+
+                toast(
+                    error.message
+                );
+
+
+            }
+
+        }
+
+
+
+        /* =====================================
+           AÇÕES
+        ===================================== */
+
+        window.keyAction =
+        async (
+            key,
+            action
+        ) => {
+
+
+            try {
+
+
+                await api(
+
+                    "/api/keys/" +
+
+                    encodeURIComponent(
+                        key
+                    ) +
+
+                    "/" +
+
+                    action,
+
+                    {
+
+                        method:
+                            "POST"
+
+                    }
+
+                );
+
+
+                toast(
+                    "Atualizado"
+                );
+
+
+                loadKeys();
+
+
+            }
+            catch(
+                error
+            ) {
+
+
+                toast(
+                    error.message
+                );
+
+
+            }
+
+        };
+
+
+
+        /* =====================================
+           EXCLUIR KEY
+        ===================================== */
+
+        window.deleteKey =
+        async key => {
+
+
+            if(
+                !confirm(
+                    "Excluir " +
+                    key +
+                    "?"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            try {
+
+
+                await api(
+
+                    "/api/keys/" +
+
+                    encodeURIComponent(
+                        key
+                    ),
+
+                    {
+
+                        method:
+                            "DELETE"
+
+                    }
+
+                );
+
+
+                toast(
+                    "Key excluída"
+                );
+
+
+                loadKeys();
+
+
+            }
+            catch(
+                error
+            ) {
+
+
+                toast(
+                    error.message
+                );
+
+
+            }
+
+        };
+
+
+
+        /* =====================================
+           FILTROS
+        ===================================== */
+
+        $("#refresh")
+            .onclick =
+            loadKeys;
+
+
+        $("#status")
+            .onchange =
+            loadKeys;
+
+
+        $("#search")
+        .oninput =
+        () => {
+
+
+            clearTimeout(
+                window.searchDelay
+            );
+
+
+            window.searchDelay =
+                setTimeout(
+                    loadKeys,
+                    250
+                );
+
+        };
+
+
+
+        /* =====================================
+           RESTAURAR SESSÃO
+        ===================================== */
+
+        (
+            async () => {
+
+
+                if(
+                    !token
+                ) {
+
+                    showLogin();
+
+                    return;
+
+                }
+
+
+                try {
+
+
+                    await api(
+                        "/api/admin/me"
+                    );
+
+
+                    showDashboard();
+
+
+                }
+                catch {
+
+
+                    showLogin();
+
+
+                }
+
+
+            }
+        )();
+
+    </script>
+
+
+</body>
+
+</html>
