@@ -1,2503 +1,2612 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
 
-    <title>Rafaela - Generator Remote iOS</title>
+<meta name="theme-color" content="#000000">
 
-    <style>
+<title>Rafaela - Generator Remote iOS</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+/* =========================================================
+   BASE
+========================================================= */
 
-        html,
-        body {
-            width: 100%;
-            min-height: 100%;
-        }
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-        body {
-            background: #000;
-            color: #fff;
+html{
+    width:100%;
+    min-height:100%;
+    background:#000;
+    overscroll-behavior-y:none;
+}
 
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
+body{
+    width:100%;
+    min-height:100%;
+    margin:0;
 
-            overflow-x: hidden;
-        }
+    background:#000;
+    color:#fff;
 
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-        /* =====================================
-           FUNDO ANIMADO
-        ===================================== */
+    overflow-x:hidden;
+    overscroll-behavior-y:none;
 
-        #particles {
-            position: fixed;
+    -webkit-text-size-adjust:100%;
+}
 
-            inset: 0;
+button,
+input,
+select{
+    font:inherit;
+}
 
-            width: 100%;
-            height: 100%;
+.hidden{
+    display:none !important;
+}
 
-            z-index: 0;
 
-            pointer-events: none;
-        }
+/* =========================================================
+   FUNDO FIXO
+========================================================= */
 
+#fixedBackground{
+    position:fixed;
 
-        .page {
-            position: relative;
+    left:0;
+    top:0;
 
-            z-index: 1;
+    width:100vw;
+    height:100vh;
+    height:100dvh;
 
-            width: 100%;
-            min-height: 100vh;
-        }
+    overflow:hidden;
 
+    z-index:0;
 
+    background:#000;
 
-        /* =====================================
-           LOGIN
-        ===================================== */
+    pointer-events:none;
 
-        .login-screen {
-            min-height: 100vh;
+    transform:translateZ(0);
+    -webkit-transform:translateZ(0);
+}
 
-            display: flex;
+#particles{
+    position:absolute;
 
-            justify-content: center;
+    left:0;
+    top:0;
 
-            align-items: flex-start;
+    width:100%;
+    height:100%;
 
-            padding:
-                34px
-                20px
-                45px;
-        }
+    display:block;
 
+    pointer-events:none;
+}
 
-        .login-content {
-            width: 100%;
+.page{
+    position:relative;
 
-            max-width: 430px;
+    z-index:1;
 
-            text-align: center;
-        }
+    width:100%;
+    min-height:100vh;
+    min-height:100dvh;
+}
 
 
+/* =========================================================
+   LOGIN
+========================================================= */
 
-        /* =====================================
-           LOGO
-        ===================================== */
+.login-screen{
+    width:100%;
 
-        .logo {
-            width: 64px;
-            height: 64px;
+    min-height:100vh;
+    min-height:100svh;
 
-            margin:
-                0
-                auto
-                14px;
+    display:grid;
 
-            border-radius: 18px;
+    place-items:center;
 
-            display: grid;
+    padding:
+        max(24px, env(safe-area-inset-top))
+        max(20px, env(safe-area-inset-right))
+        max(24px, env(safe-area-inset-bottom))
+        max(20px, env(safe-area-inset-left));
+}
 
-            place-items: center;
+.login-content{
+    width:100%;
+    max-width:430px;
 
-            position: relative;
+    margin:auto;
 
-            background:
-                radial-gradient(
-                    circle at 62% 35%,
-                    #ececec 0 8%,
-                    #7d7d7d 9%,
-                    #181818 29%,
-                    #050505 64%
-                );
+    text-align:center;
+}
 
-            border:
-                1px solid
-                #202020;
 
-            box-shadow:
-                0 0 26px
-                rgba(255,255,255,.07);
+/* =========================================================
+   LOGO
+========================================================= */
 
-            overflow: hidden;
-        }
+.logo{
+    position:relative;
 
+    display:grid;
+    place-items:center;
 
-        .logo::before {
-            content: "";
+    width:64px;
+    height:64px;
 
-            position: absolute;
+    margin:0 auto 14px;
 
-            width: 30px;
-            height: 9px;
+    border:1px solid #202020;
 
-            background:
-                #e9e9e9;
+    border-radius:18px;
 
-            border-radius: 50%;
+    overflow:hidden;
 
-            transform:
-                rotate(-8deg);
+    background:
+        radial-gradient(
+            circle at 62% 35%,
+            #ececec 0 8%,
+            #7d7d7d 9%,
+            #181818 29%,
+            #050505 64%
+        );
 
-            top: 24px;
-            left: 17px;
+    box-shadow:
+        0 0 26px
+        rgba(255,255,255,.07);
+}
 
-            box-shadow:
-                inset
-                0
-                -3px
-                5px
-                #666;
-        }
+.logo::before{
+    content:"";
 
+    position:absolute;
 
-        .logo::after {
-            content: "";
+    width:30px;
+    height:9px;
 
-            position: absolute;
+    left:17px;
+    top:24px;
 
-            width: 6px;
-            height: 6px;
+    border-radius:50%;
 
-            border-radius: 50%;
+    background:#e9e9e9;
 
-            background:
-                #111;
+    transform:rotate(-8deg);
 
-            top: 26px;
-            left: 30px;
+    box-shadow:
+        inset 0 -3px 5px #666;
+}
 
-            box-shadow:
-                0 0 7px
-                rgba(255,255,255,.55);
-        }
+.logo::after{
+    content:"";
 
+    position:absolute;
 
-        .logo span {
-            position: absolute;
+    width:6px;
+    height:6px;
 
-            width: 2px;
-            height: 23px;
+    left:30px;
+    top:26px;
 
-            background:
-                linear-gradient(
-                    #d62442,
-                    transparent
-                );
+    border-radius:50%;
 
-            top: 31px;
-            left: 32px;
+    background:#111;
 
-            transform:
-                rotate(4deg);
+    box-shadow:
+        0 0 7px
+        rgba(255,255,255,.55);
+}
 
-            opacity: .8;
-        }
+.logo span{
+    position:absolute;
 
+    width:2px;
+    height:23px;
 
+    left:32px;
+    top:31px;
 
-        /* =====================================
-           HEADER LOGIN
-        ===================================== */
+    background:
+        linear-gradient(
+            #d62442,
+            transparent
+        );
 
-        .small-title {
-            color:
-                #666;
+    transform:rotate(4deg);
 
-            font-size:
-                10px;
+    opacity:.8;
+}
 
-            font-weight:
-                800;
 
-            letter-spacing:
-                2px;
+/* =========================================================
+   LOGIN HEADER
+========================================================= */
 
-            margin-bottom:
-                13px;
-        }
+.small-title{
+    margin-bottom:13px;
 
+    color:#666;
 
-        .main-title {
-            font-size:
-                34px;
+    font-size:10px;
+    font-weight:800;
 
-            line-height:
-                1;
+    letter-spacing:2px;
+}
 
-            font-weight:
-                900;
+.main-title{
+    margin-bottom:11px;
 
-            letter-spacing:
-                -1.5px;
+    font-size:34px;
+    font-weight:900;
 
-            margin-bottom:
-                11px;
-        }
+    line-height:1;
 
+    letter-spacing:-1.5px;
+}
 
-        .description {
-            max-width:
-                360px;
+.description{
+    max-width:360px;
 
-            margin:
-                0
-                auto
-                27px;
+    margin:
+        0 auto
+        27px;
 
-            color:
-                #626262;
+    color:#626262;
 
-            font-size:
-                14px;
+    font-size:14px;
+    font-weight:600;
 
-            font-weight:
-                600;
+    line-height:1.45;
+}
 
-            line-height:
-                1.45;
-        }
 
+/* =========================================================
+   CARDS
+========================================================= */
 
+.login-card,
+.panel{
+    background:
+        rgba(11,11,11,.96);
 
-        /* =====================================
-           CARD LOGIN
-        ===================================== */
+    border:
+        1px solid
+        #292929;
 
-        .login-card {
-            width:
-                100%;
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.72);
+}
 
-            background:
-                rgba(
-                    12,
-                    12,
-                    12,
-                    .96
-                );
+.login-card{
+    width:100%;
 
-            border:
-                1px solid
-                #2b2b2b;
+    padding:20px;
 
-            border-radius:
-                20px;
+    border-radius:20px;
 
-            padding:
-                20px;
+    text-align:left;
+}
 
-            text-align:
-                left;
 
-            box-shadow:
-                0
-                20px
-                65px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    .75
-                );
-        }
+/* =========================================================
+   CAMPOS
+========================================================= */
 
+.field{
+    margin-bottom:15px;
+}
 
+.field label{
+    display:block;
 
-        /* =====================================
-           CAMPOS
-        ===================================== */
+    margin-bottom:6px;
 
-        .field {
-            margin-bottom:
-                15px;
-        }
+    color:#707070;
 
+    font-size:10px;
+    font-weight:900;
 
-        .field label {
-            display:
-                block;
+    letter-spacing:1.7px;
+}
 
-            color:
-                #707070;
+.field input,
+.field select{
+    width:100%;
+    height:45px;
 
-            font-size:
-                10px;
+    padding:0 14px;
 
-            font-weight:
-                900;
+    border:
+        1px solid
+        #292929;
 
-            letter-spacing:
-                1.7px;
+    border-radius:11px;
 
-            margin-bottom:
-                6px;
-        }
+    outline:none;
 
+    background:#020202;
+    color:#f5f5f5;
 
-        .field input,
-        .field select {
-            width:
-                100%;
+    font-size:13px;
 
-            height:
-                45px;
+    transition:
+        border-color .15s ease;
+}
 
-            border-radius:
-                11px;
+.field input::placeholder{
+    color:#363636;
+}
 
-            border:
-                1px solid
-                #292929;
+.field input:focus,
+.field select:focus{
+    border-color:#4b4b4b;
+}
 
-            background:
-                #020202;
 
-            padding:
-                0
-                14px;
+/* =========================================================
+   BOTÕES
+========================================================= */
 
-            color:
-                #f5f5f5;
+.login-button,
+.main-button{
+    width:100%;
+    height:46px;
 
-            font-size:
-                13px;
+    border:0;
 
-            outline:
-                none;
+    border-radius:11px;
 
-            transition:
-                .2s;
-        }
+    background:#f4f4f4;
+    color:#080808;
 
+    font-size:14px;
+    font-weight:900;
 
-        .field input::placeholder {
-            color:
-                #363636;
-        }
+    cursor:pointer;
 
+    transition:
+        transform .15s ease,
+        background .15s ease;
+}
 
-        .field input:focus,
-        .field select:focus {
-            border-color:
-                #484848;
-        }
+.login-button:hover,
+.main-button:hover{
+    background:#fff;
+}
 
+.login-button:active,
+.main-button:active{
+    transform:scale(.99);
+}
 
+.login-error{
+    display:block;
 
-        /* =====================================
-           BOTÕES
-        ===================================== */
+    min-height:17px;
 
-        .login-button,
-        .main-button {
-            width:
-                100%;
+    margin-top:9px;
 
-            height:
-                46px;
+    color:#a84949;
 
-            border:
-                none;
+    font-size:11px;
 
-            border-radius:
-                11px;
+    text-align:center;
+}
 
-            background:
-                #f4f4f4;
+.support{
+    margin-top:20px;
 
-            color:
-                #080808;
+    color:#414141;
 
-            font-size:
-                14px;
+    font-size:10px;
+}
 
-            font-weight:
-                900;
 
-            cursor:
-                pointer;
+/* =========================================================
+   DASHBOARD
+========================================================= */
 
-            transition:
-                .15s;
-        }
+.dashboard{
+    width:100%;
+    min-height:100vh;
+    min-height:100dvh;
 
+    padding:
+        max(34px, env(safe-area-inset-top))
+        max(22px, env(safe-area-inset-right))
+        max(60px, env(safe-area-inset-bottom))
+        max(22px, env(safe-area-inset-left));
+}
 
-        .login-button:hover,
-        .main-button:hover {
-            background:
-                #fff;
+.dashboard-wrap{
+    width:100%;
+    max-width:1080px;
 
-            transform:
-                translateY(-1px);
-        }
+    margin:auto;
+}
 
 
-        .login-button:active,
-        .main-button:active {
-            transform:
-                scale(.99);
-        }
+/* =========================================================
+   DASHBOARD HEADER
+========================================================= */
 
+.dashboard-header{
+    display:flex;
 
+    justify-content:space-between;
+    align-items:center;
 
-        /* =====================================
-           ERRO LOGIN
-        ===================================== */
+    gap:16px;
 
-        .login-error {
-            display:
-                block;
+    margin-bottom:26px;
+}
 
-            min-height:
-                17px;
+.dashboard-brand{
+    display:flex;
 
-            margin-top:
-                9px;
+    align-items:center;
 
-            text-align:
-                center;
+    gap:12px;
 
-            color:
-                #a84949;
+    min-width:0;
+}
 
-            font-size:
-                11px;
-        }
+.mini-logo{
+    flex:0 0 auto;
 
+    display:grid;
+    place-items:center;
 
+    width:42px;
+    height:42px;
 
-        /* =====================================
-           RODAPÉ
-        ===================================== */
+    border:
+        1px solid
+        #292929;
 
-        .support {
-            margin-top:
-                20px;
+    border-radius:12px;
 
-            color:
-                #414141;
+    background:#101010;
 
-            font-size:
-                10px;
-        }
+    font-size:17px;
+    font-weight:900;
+}
 
+.dashboard-brand h1{
+    font-size:21px;
+    font-weight:900;
+}
 
+.dashboard-brand p{
+    margin-top:3px;
 
-        /* =====================================
-           GLOBAL
-        ===================================== */
+    color:#555;
 
-        .hidden {
-            display:
-                none !important;
-        }
+    font-size:9px;
+    font-weight:800;
 
+    letter-spacing:1.6px;
+}
 
+.logout{
+    flex:0 0 auto;
 
-        /* =====================================
-           DASHBOARD
-        ===================================== */
+    width:auto;
+    height:38px;
 
-        .dashboard {
-            width:
-                100%;
+    padding:0 16px;
 
-            min-height:
-                100vh;
+    border:
+        1px solid
+        #292929;
 
-            padding:
-                34px
-                22px
-                60px;
-        }
+    border-radius:10px;
 
+    background:#0d0d0d;
+    color:#aaa;
 
-        .dashboard-wrap {
-            width:
-                100%;
+    font-size:12px;
+    font-weight:700;
 
-            max-width:
-                1080px;
+    cursor:pointer;
+}
 
-            margin:
-                auto;
-        }
 
+/* =========================================================
+   GRID DESKTOP
+========================================================= */
 
+.dashboard-grid{
+    display:grid;
 
-        /* =====================================
-           HEADER DASHBOARD
-        ===================================== */
+    grid-template-columns:
+        320px
+        minmax(0,1fr);
 
-        .dashboard-header {
-            display:
-                flex;
+    gap:17px;
+}
 
-            justify-content:
-                space-between;
+.panel{
+    min-width:0;
 
-            align-items:
-                center;
+    padding:20px;
 
-            margin-bottom:
-                26px;
-        }
+    border-radius:19px;
+}
 
+.panel-top{
+    display:flex;
 
-        .dashboard-brand {
-            display:
-                flex;
+    justify-content:space-between;
+    align-items:flex-start;
 
-            align-items:
-                center;
+    gap:15px;
 
-            gap:
-                12px;
-        }
+    margin-bottom:20px;
+}
 
+.panel-tag{
+    color:#555;
 
-        .mini-logo {
-            width:
-                42px;
+    font-size:9px;
+    font-weight:900;
 
-            height:
-                42px;
+    letter-spacing:2px;
+}
 
-            border-radius:
-                12px;
+.panel h2{
+    margin-top:4px;
 
-            background:
-                #101010;
+    font-size:19px;
+}
 
-            border:
-                1px solid
-                #292929;
+.online{
+    flex:0 0 auto;
 
-            display:
-                grid;
+    color:#555;
 
-            place-items:
-                center;
+    font-size:9px;
+    font-weight:800;
 
-            font-size:
-                17px;
+    letter-spacing:1px;
+}
 
-            font-weight:
-                900;
-        }
+.online::before{
+    content:"";
 
+    display:inline-block;
 
-        .dashboard-brand h1 {
-            font-size:
-                21px;
+    width:5px;
+    height:5px;
 
-            font-weight:
-                900;
-        }
+    margin-right:5px;
 
+    border-radius:50%;
 
-        .dashboard-brand p {
-            color:
-                #555;
+    background:#aaa;
+}
 
-            font-size:
-                9px;
 
-            font-weight:
-                800;
+/* =========================================================
+   RESULTADO GERADO
+========================================================= */
 
-            letter-spacing:
-                1.6px;
+.generator-output{
+    min-height:87px;
 
-            margin-top:
-                3px;
-        }
+    margin-top:14px;
+    padding:12px;
 
+    border:
+        1px solid
+        #222;
 
-        .logout {
-            width:
-                auto;
+    border-radius:11px;
 
-            height:
-                38px;
+    background:#020202;
+    color:#777;
 
-            padding:
-                0
-                16px;
+    font-family:
+        Consolas,
+        monospace;
 
-            border-radius:
-                10px;
+    font-size:11px;
 
-            border:
-                1px solid
-                #292929;
+    white-space:pre-wrap;
 
-            background:
-                #0d0d0d;
+    word-break:break-all;
+}
 
-            color:
-                #aaa;
 
-            font-size:
-                12px;
+/* =========================================================
+   FILTROS
+========================================================= */
 
-            font-weight:
-                700;
+.filters{
+    display:grid;
 
-            cursor:
-                pointer;
-        }
+    grid-template-columns:
+        minmax(150px,1fr)
+        125px
+        90px;
 
+    gap:7px;
 
+    margin-bottom:13px;
+}
 
-        /* =====================================
-           GRID DASHBOARD
-        ===================================== */
+.filters input,
+.filters select{
+    width:100%;
+    min-width:0;
+    height:39px;
 
-        .dashboard-grid {
-            display:
-                grid;
+    padding:0 11px;
 
-            grid-template-columns:
-                320px
-                minmax(
-                    0,
-                    1fr
-                );
+    border:
+        1px solid
+        #282828;
 
-            gap:
-                17px;
-        }
+    border-radius:9px;
 
+    outline:none;
 
+    background:#020202;
+    color:#aaa;
 
-        /* =====================================
-           PAINEL
-        ===================================== */
+    font-size:11px;
+}
 
-        .panel {
-            background:
-                rgba(
-                    11,
-                    11,
-                    11,
-                    .95
-                );
+.refresh{
+    height:39px;
 
-            border:
-                1px solid
-                #292929;
+    border:
+        1px solid
+        #292929;
 
-            border-radius:
-                19px;
+    border-radius:9px;
 
-            padding:
-                20px;
-        }
+    background:#111;
+    color:#bbb;
 
+    font-size:11px;
+    font-weight:700;
 
-        .panel-top {
-            display:
-                flex;
+    cursor:pointer;
+}
 
-            justify-content:
-                space-between;
 
-            align-items:
-                flex-start;
+/* =========================================================
+   TABELA DESKTOP
+========================================================= */
 
-            margin-bottom:
-                20px;
-        }
+.table-wrap{
+    width:100%;
 
+    overflow:auto;
 
-        .panel-tag {
-            color:
-                #555;
+    border:
+        1px solid
+        #202020;
 
-            font-size:
-                9px;
+    border-radius:11px;
 
-            font-weight:
-                900;
+    -webkit-overflow-scrolling:touch;
+}
 
-            letter-spacing:
-                2px;
-        }
+table{
+    width:100%;
 
+    border-collapse:collapse;
 
-        .panel h2 {
-            margin-top:
-                4px;
+    min-width:700px;
+}
 
-            font-size:
-                19px;
-        }
+thead{
+    background:#080808;
+}
 
+th{
+    padding:
+        11px
+        9px;
 
-        .online {
-            color:
-                #555;
+    color:#555;
 
-            font-size:
-                9px;
+    font-size:9px;
 
-            font-weight:
-                800;
+    font-weight:800;
 
-            letter-spacing:
-                1px;
-        }
+    text-align:left;
 
+    letter-spacing:1px;
 
-        .online::before {
-            content:
-                "";
+    white-space:nowrap;
+}
 
-            display:
-                inline-block;
+td{
+    padding:
+        10px
+        9px;
 
-            width:
-                5px;
+    border-top:
+        1px solid
+        #202020;
 
-            height:
-                5px;
+    color:#999;
 
-            border-radius:
-                50%;
+    font-size:11px;
 
-            background:
-                #aaa;
+    vertical-align:middle;
+}
 
-            margin-right:
-                5px;
-        }
+td strong{
+    color:#ddd;
 
+    word-break:break-all;
+}
 
+.status{
+    display:inline-block;
 
-        /* =====================================
-           OUTPUT
-        ===================================== */
+    padding:
+        3px
+        7px;
 
-        .generator-output {
-            min-height:
-                87px;
+    border:
+        1px solid
+        #303030;
 
-            margin-top:
-                14px;
+    border-radius:20px;
+}
 
-            padding:
-                12px;
+.action{
+    padding:
+        5px
+        7px;
 
-            border:
-                1px solid
-                #222;
+    margin:2px;
 
-            border-radius:
-                11px;
+    border:
+        1px solid
+        #292929;
 
-            background:
-                #020202;
+    border-radius:7px;
 
-            color:
-                #777;
+    background:#111;
+    color:#aaa;
 
-            font-family:
-                Consolas,
-                monospace;
+    cursor:pointer;
 
-            font-size:
-                11px;
+    font-size:9px;
 
-            white-space:
-                pre-wrap;
+    white-space:nowrap;
+}
 
-            word-break:
-                break-all;
-        }
+.action:hover{
+    background:#1a1a1a;
+}
 
+.result-count{
+    flex:0 0 auto;
 
+    color:#444;
 
-        /* =====================================
-           FILTROS
-        ===================================== */
+    font-size:10px;
+}
 
-        .filters {
-            display:
-                grid;
 
-            grid-template-columns:
-                1fr
-                125px
-                90px;
+/* =========================================================
+   TOAST
+========================================================= */
 
-            gap:
-                7px;
+#toast{
+    display:none;
 
-            margin-bottom:
-                13px;
-        }
+    position:fixed;
 
+    left:50%;
+    bottom:
+        max(
+            22px,
+            env(safe-area-inset-bottom)
+        );
 
-        .filters input,
-        .filters select {
-            height:
-                39px;
+    z-index:9999;
 
-            border-radius:
-                9px;
+    max-width:
+        calc(100vw - 32px);
 
-            border:
-                1px solid
-                #282828;
+    padding:
+        11px
+        16px;
 
-            background:
-                #020202;
+    border-radius:10px;
 
-            color:
-                #aaa;
+    background:#f5f5f5;
+    color:#050505;
 
-            padding:
-                0
-                11px;
+    box-shadow:
+        0 10px 40px
+        rgba(0,0,0,.7);
 
-            font-size:
-                11px;
+    font-size:12px;
+    font-weight:800;
 
-            outline:
-                none;
-        }
+    text-align:center;
 
+    transform:
+        translateX(-50%);
+}
 
-        .refresh {
-            border:
-                1px solid
-                #292929;
 
-            background:
-                #111;
+/* =========================================================
+   MOBILE
+========================================================= */
 
-            color:
-                #bbb;
+@media(max-width:720px){
 
-            border-radius:
-                9px;
+    /* LOGIN CENTRALIZADO */
 
-            font-size:
-                11px;
+    .login-screen{
+        min-height:100svh;
 
-            font-weight:
-                700;
+        align-items:center;
 
-            cursor:
-                pointer;
-        }
+        padding:
+            max(20px, env(safe-area-inset-top))
+            20px
+            max(26px, env(safe-area-inset-bottom));
+    }
 
+    .login-content{
+        max-width:380px;
+    }
 
+    .logo{
+        width:58px;
+        height:58px;
 
-        /* =====================================
-           TABELA
-        ===================================== */
+        margin-bottom:12px;
 
-        .table-wrap {
-            width:
-                100%;
+        border-radius:16px;
+    }
 
-            overflow:
-                auto;
+    .logo::before{
+        width:27px;
+        height:8px;
 
-            border:
-                1px solid
-                #202020;
+        left:15px;
+        top:22px;
+    }
 
-            border-radius:
-                11px;
-        }
+    .logo::after{
+        left:27px;
+        top:24px;
+    }
 
+    .logo span{
+        left:29px;
+        top:29px;
 
-        table {
-            width:
-                100%;
+        height:21px;
+    }
 
-            border-collapse:
-                collapse;
+    .small-title{
+        margin-bottom:11px;
 
-            min-width:
-                700px;
-        }
+        font-size:9px;
+    }
 
+    .main-title{
+        margin-bottom:9px;
 
-        thead {
-            background:
-                #080808;
-        }
+        font-size:31px;
+    }
 
+    .description{
+        margin-bottom:22px;
 
-        th {
-            color:
-                #555;
+        font-size:13px;
+    }
 
-            font-size:
-                9px;
+    .login-card{
+        padding:18px;
 
-            text-align:
-                left;
+        border-radius:18px;
+    }
 
-            padding:
-                11px
-                9px;
+    .field input,
+    .field select{
+        height:44px;
+    }
 
-            letter-spacing:
-                1px;
-        }
+    .login-button,
+    .main-button{
+        height:45px;
+    }
 
 
-        td {
-            color:
-                #999;
+    /* DASHBOARD MOBILE REAL */
 
-            padding:
-                10px
-                9px;
+    .dashboard{
+        padding:
+            max(22px, env(safe-area-inset-top))
+            14px
+            max(40px, env(safe-area-inset-bottom));
+    }
 
-            border-top:
-                1px solid
-                #202020;
+    .dashboard-wrap{
+        max-width:100%;
+    }
 
-            font-size:
-                11px;
-        }
+    .dashboard-header{
+        margin-bottom:20px;
 
+        padding:
+            0
+            2px;
+    }
 
-        td strong {
-            color:
-                #ddd;
-        }
+    .mini-logo{
+        width:39px;
+        height:39px;
 
+        border-radius:11px;
+    }
 
-        .status {
-            padding:
-                3px
-                7px;
+    .dashboard-brand{
+        gap:10px;
+    }
 
-            border:
-                1px solid
-                #303030;
+    .dashboard-brand h1{
+        font-size:19px;
+    }
 
-            border-radius:
-                20px;
-        }
+    .dashboard-brand p{
+        font-size:8px;
+    }
 
+    .logout{
+        height:36px;
 
+        padding:
+            0
+            13px;
+    }
 
-        /* =====================================
-           AÇÕES
-        ===================================== */
 
-        .action {
-            background:
-                #111;
+    /* UM CARD POR LINHA */
 
-            color:
-                #aaa;
+    .dashboard-grid{
+        display:flex;
 
-            border:
-                1px solid
-                #292929;
+        flex-direction:column;
 
-            border-radius:
-                7px;
+        gap:14px;
+    }
 
-            padding:
-                5px
-                7px;
+    .panel{
+        width:100%;
 
-            margin:
-                2px;
+        padding:17px;
 
-            cursor:
-                pointer;
+        border-radius:17px;
+    }
 
-            font-size:
-                9px;
-        }
+    .panel-top{
+        margin-bottom:18px;
+    }
 
+    .panel h2{
+        font-size:18px;
+    }
 
-        .action:hover {
-            background:
-                #1a1a1a;
-        }
 
+    /* FILTROS MOBILE */
 
-        .result-count {
-            color:
-                #444;
+    .filters{
+        display:flex;
 
-            font-size:
-                10px;
-        }
+        flex-direction:column;
 
+        gap:8px;
 
+        margin-bottom:13px;
+    }
 
-        /* =====================================
-           TOAST
-        ===================================== */
+    .filters input,
+    .filters select,
+    .refresh{
+        width:100%;
+        height:42px;
+    }
 
-        #toast {
-            display:
-                none;
 
-            position:
-                fixed;
+    /* TABELA VIRA CARDS */
 
-            right:
-                22px;
+    .table-wrap{
+        overflow:visible;
 
-            bottom:
-                22px;
+        border:0;
 
-            z-index:
-                999;
+        border-radius:0;
+    }
 
-            padding:
-                11px
-                16px;
+    table{
+        display:block;
 
-            border-radius:
-                10px;
+        width:100%;
+        min-width:0;
+    }
 
-            background:
-                #f5f5f5;
+    thead{
+        display:none;
+    }
 
-            color:
-                #050505;
+    tbody{
+        display:flex;
 
-            font-size:
-                12px;
+        flex-direction:column;
 
-            font-weight:
-                800;
-        }
+        gap:10px;
+    }
 
+    tr{
+        display:block;
 
+        width:100%;
 
-        /* =====================================
-           RESPONSIVO
-        ===================================== */
+        padding:
+            4px
+            13px;
 
-        @media(
-            max-width:
-            850px
-        ) {
+        border:
+            1px solid
+            #252525;
 
-            .login-screen {
-                padding-top:
-                    28px;
-            }
+        border-radius:13px;
 
+        background:#080808;
+    }
 
-            .login-content {
-                max-width:
-                    390px;
-            }
+    td{
+        display:grid;
 
+        grid-template-columns:
+            88px
+            minmax(0,1fr);
 
-            .dashboard-grid {
-                grid-template-columns:
-                    1fr;
-            }
+        align-items:center;
 
+        gap:10px;
 
-            .filters {
-                grid-template-columns:
-                    1fr;
-            }
+        width:100%;
 
-        }
+        padding:
+            10px
+            0;
 
-    </style>
+        border-top:
+            1px solid
+            #1d1d1d;
 
+        font-size:11px;
+
+        word-break:break-word;
+    }
+
+    td:first-child{
+        border-top:0;
+    }
+
+    td::before{
+        content:
+            attr(data-label);
+
+        color:#525252;
+
+        font-size:8px;
+        font-weight:900;
+
+        letter-spacing:1.2px;
+    }
+
+    td strong{
+        display:block;
+
+        min-width:0;
+
+        color:#ddd;
+
+        font-size:11px;
+
+        word-break:break-all;
+    }
+
+    td.actions-cell{
+        display:block;
+
+        padding-top:11px;
+    }
+
+    td.actions-cell::before{
+        display:block;
+
+        margin-bottom:8px;
+    }
+
+    .action{
+        display:inline-flex;
+
+        align-items:center;
+        justify-content:center;
+
+        min-height:31px;
+
+        margin:
+            2px
+            3px
+            2px
+            0;
+
+        padding:
+            6px
+            9px;
+
+        font-size:9px;
+    }
+
+    .result-count{
+        font-size:9px;
+    }
+
+}
+
+
+/* =========================================================
+   TELAS MUITO PEQUENAS
+========================================================= */
+
+@media(max-width:390px){
+
+    .dashboard{
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+    .panel{
+        padding:15px;
+    }
+
+    .dashboard-brand h1{
+        font-size:18px;
+    }
+
+    .logout{
+        padding:
+            0
+            11px;
+
+        font-size:11px;
+    }
+
+    td{
+        grid-template-columns:
+            78px
+            minmax(0,1fr);
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    #particles{
+        opacity:.55;
+    }
+
+}
+</style>
 </head>
 
 
 <body>
 
 
+<!-- =====================================================
+     FUNDO FIXO
+===================================================== -->
+
+<div id="fixedBackground">
     <canvas id="particles"></canvas>
+</div>
 
 
-    <div class="page">
+<div class="page">
 
 
-        <!-- =====================================
-             LOGIN
-        ===================================== -->
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
-        <section
-            id="loginScreen"
-            class="login-screen"
-        >
+<section
+    id="loginScreen"
+    class="login-screen"
+>
 
-
-            <div class="login-content">
-
-
-                <div class="logo">
-                    <span></span>
-                </div>
+    <div class="login-content">
 
 
-                <div class="small-title">
-                    REMOTE IOS GENERATOR
-                </div>
+        <div class="logo">
+            <span></span>
+        </div>
 
 
-                <h1 class="main-title">
-                    Rafaela
-                </h1>
+        <div class="small-title">
+            REMOTE IOS GENERATOR
+        </div>
 
 
-                <p class="description">
-                    Gerencie suas chaves de forma rápida
-                    e centralizada.
-                </p>
+        <h1 class="main-title">
+            Rafaela
+        </h1>
 
 
-
-                <div class="login-card">
-
-
-                    <div class="field">
-
-                        <label>
-                            USUÁRIO
-                        </label>
+        <p class="description">
+            Gerencie suas chaves de forma rápida e centralizada.
+        </p>
 
 
-                        <input
-                            id="username"
-                            autocomplete="username"
-                            placeholder="Digite seu usuário"
-                        >
-
-                    </div>
+        <div class="login-card">
 
 
+            <div class="field">
 
-                    <div class="field">
+                <label>
+                    USUÁRIO
+                </label>
 
-                        <label>
-                            SENHA
-                        </label>
-
-
-                        <input
-                            id="password"
-                            type="password"
-                            autocomplete="current-password"
-                            placeholder="Digite sua senha"
-                        >
-
-                    </div>
-
-
-
-                    <button
-                        id="loginButton"
-                        class="login-button"
-                    >
-                        Entrar
-                    </button>
-
-
-                    <small
-                        id="loginError"
-                        class="login-error"
-                    ></small>
-
-
-                </div>
-
-
-
-                <p class="support">
-                    Remote IOS Generator
-                </p>
-
+                <input
+                    id="username"
+                    autocomplete="username"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    placeholder="Digite seu usuário"
+                >
 
             </div>
 
 
-        </section>
-
-
-
-        <!-- =====================================
-             DASHBOARD
-        ===================================== -->
-
-        <section
-            id="dashboard"
-            class="dashboard hidden"
-        >
-
-
-            <div class="dashboard-wrap">
-
-
-                <header class="dashboard-header">
-
-
-                    <div class="dashboard-brand">
-
-
-                        <div class="mini-logo">
-                            R
-                        </div>
-
-
-                        <div>
-
-                            <h1>
-                                Generator
-                            </h1>
-
-                            <p>
-                                REMOTE IOS
-                            </p>
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <button
-                        id="logoutButton"
-                        class="logout"
-                    >
-                        Sair
-                    </button>
-
-
-                </header>
-
-
-
-                <div class="dashboard-grid">
-
-
-                    <!-- =========================
-                         GERADOR
-                    ========================== -->
-
-                    <div class="panel">
-
-
-                        <div class="panel-top">
-
-
-                            <div>
-
-                                <span class="panel-tag">
-                                    GENERATOR
-                                </span>
-
-                                <h2>
-                                    Gerar keys
-                                </h2>
-
-                            </div>
-
-
-                            <div class="online">
-                                ONLINE
-                            </div>
-
-
-                        </div>
-
-
-
-                        <div class="field">
-
-                            <label>
-                                PLANO
-                            </label>
-
-
-                            <select id="plan">
-
-                                <option value="1">
-                                    1 dia
-                                </option>
-
-                                <option value="7">
-                                    7 dias
-                                </option>
-
-                                <option value="30">
-                                    30 dias
-                                </option>
-
-                                <option value="lifetime">
-                                    Lifetime
-                                </option>
-
-                                <option value="custom">
-                                    Custom
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-
-                        <div
-                            id="customDaysWrap"
-                            class="field hidden"
-                        >
-
-                            <label>
-                                DIAS
-                            </label>
-
-
-                            <input
-                                id="customDays"
-                                type="number"
-                                min="1"
-                                value="1"
-                            >
-
-                        </div>
-
-
-
-                        <div class="field">
-
-                            <label>
-                                QUANTIDADE
-                            </label>
-
-
-                            <input
-                                id="quantity"
-                                type="number"
-                                min="1"
-                                max="100"
-                                value="1"
-                            >
-
-                        </div>
-
-
-
-                        <div class="field">
-
-                            <label>
-                                OBSERVAÇÃO
-                            </label>
-
-
-                            <input
-                                id="note"
-                                placeholder="Opcional"
-                            >
-
-                        </div>
-
-
-
-                        <button
-                            id="generateButton"
-                            class="main-button"
-                        >
-                            Gerar REMOTE-IOS
-                        </button>
-
-
-
-                        <pre
-                            id="generated"
-                            class="generator-output"
-                        >As keys aparecerão aqui.</pre>
-
-
-                    </div>
-
-
-
-                    <!-- =========================
-                         GERENCIAMENTO
-                    ========================== -->
-
-                    <div class="panel">
-
-
-                        <div class="panel-top">
-
-
-                            <div>
-
-                                <span class="panel-tag">
-                                    MANAGEMENT
-                                </span>
-
-                                <h2>
-                                    Keys
-                                </h2>
-
-                            </div>
-
-
-                            <div
-                                id="resultCount"
-                                class="result-count"
-                            ></div>
-
-
-                        </div>
-
-
-
-                        <div class="filters">
-
-
-                            <input
-                                id="search"
-                                placeholder="Buscar REMOTE-IOS-XXXXXX"
-                            >
-
-
-
-                            <select id="status">
-
-                                <option value="">
-                                    Todos
-                                </option>
-
-                                <option value="unused">
-                                    unused
-                                </option>
-
-                                <option value="active">
-                                    active
-                                </option>
-
-                                <option value="paused">
-                                    paused
-                                </option>
-
-                                <option value="disabled">
-                                    disabled
-                                </option>
-
-                                <option value="expired">
-                                    expired
-                                </option>
-
-                            </select>
-
-
-
-                            <button
-                                id="refresh"
-                                class="refresh"
-                            >
-                                Atualizar
-                            </button>
-
-
-                        </div>
-
-
-
-                        <div class="table-wrap">
-
-
-                            <table>
-
-
-                                <thead>
-
-
-                                    <tr>
-
-                                        <th>
-                                            KEY
-                                        </th>
-
-                                        <th>
-                                            PLANO
-                                        </th>
-
-                                        <th>
-                                            STATUS
-                                        </th>
-
-                                        <th>
-                                            EXPIRA
-                                        </th>
-
-                                        <th>
-                                            DEVICE
-                                        </th>
-
-                                        <th>
-                                            AÇÕES
-                                        </th>
-
-                                    </tr>
-
-
-                                </thead>
-
-
-
-                                <tbody id="rows"></tbody>
-
-
-                            </table>
-
-
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
+            <div class="field">
+
+                <label>
+                    SENHA
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    autocomplete="current-password"
+                    placeholder="Digite sua senha"
+                >
 
             </div>
 
 
-        </section>
+            <button
+                id="loginButton"
+                class="login-button"
+            >
+                Entrar
+            </button>
+
+
+            <small
+                id="loginError"
+                class="login-error"
+            ></small>
+
+
+        </div>
+
+
+        <p class="support">
+            Remote IOS Generator
+        </p>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section
+    id="dashboard"
+    class="dashboard hidden"
+>
+
+<div class="dashboard-wrap">
+
+
+<header class="dashboard-header">
+
+
+    <div class="dashboard-brand">
+
+
+        <div class="mini-logo">
+            R
+        </div>
+
+
+        <div>
+
+            <h1>
+                Generator
+            </h1>
+
+            <p>
+                REMOTE IOS
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <button
+        id="logoutButton"
+        class="logout"
+    >
+        Sair
+    </button>
+
+
+</header>
+
+
+
+<div class="dashboard-grid">
+
+
+<!-- =====================================================
+     GERADOR
+===================================================== -->
+
+<div class="panel">
+
+
+    <div class="panel-top">
+
+
+        <div>
+
+            <span class="panel-tag">
+                GENERATOR
+            </span>
+
+            <h2>
+                Gerar keys
+            </h2>
+
+        </div>
+
+
+        <div class="online">
+            ONLINE
+        </div>
 
 
     </div>
 
 
 
-    <div id="toast"></div>
+    <div class="field">
+
+        <label>
+            PLANO
+        </label>
+
+        <select id="plan">
+
+            <option value="1">
+                1 dia
+            </option>
+
+            <option value="7">
+                7 dias
+            </option>
+
+            <option value="30">
+                30 dias
+            </option>
+
+            <option value="lifetime">
+                Lifetime
+            </option>
+
+            <option value="custom">
+                Custom
+            </option>
+
+        </select>
+
+    </div>
 
 
 
-    <script>
+    <div
+        id="customDaysWrap"
+        class="field hidden"
+    >
 
-        /* =====================================
-           PARTICULAS
-        ===================================== */
+        <label>
+            DIAS
+        </label>
 
-        const canvas =
-            document.getElementById(
-                "particles"
-            );
+        <input
+            id="customDays"
+            type="number"
+            inputmode="numeric"
+            min="1"
+            value="1"
+        >
 
-
-        const ctx =
-            canvas.getContext(
-                "2d"
-            );
-
-
-        let particles =
-            [];
+    </div>
 
 
-        function resizeCanvas() {
 
-            canvas.width =
-                window.innerWidth *
-                devicePixelRatio;
+    <div class="field">
 
+        <label>
+            QUANTIDADE
+        </label>
 
-            canvas.height =
-                window.innerHeight *
-                devicePixelRatio;
+        <input
+            id="quantity"
+            type="number"
+            inputmode="numeric"
+            min="1"
+            max="100"
+            value="1"
+        >
 
-
-            canvas.style.width =
-                window.innerWidth +
-                "px";
-
-
-            canvas.style.height =
-                window.innerHeight +
-                "px";
+    </div>
 
 
-            ctx.setTransform(
-                devicePixelRatio,
-                0,
-                0,
-                devicePixelRatio,
-                0,
-                0
-            );
+
+    <div class="field">
+
+        <label>
+            OBSERVAÇÃO
+        </label>
+
+        <input
+            id="note"
+            placeholder="Opcional"
+        >
+
+    </div>
 
 
-            createParticles();
+
+    <button
+        id="generateButton"
+        class="main-button"
+    >
+        Gerar REMOTE-IOS
+    </button>
+
+
+
+    <pre
+        id="generated"
+        class="generator-output"
+    >As keys aparecerão aqui.</pre>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     MANAGEMENT
+===================================================== -->
+
+<div class="panel">
+
+
+    <div class="panel-top">
+
+
+        <div>
+
+            <span class="panel-tag">
+                MANAGEMENT
+            </span>
+
+            <h2>
+                Keys
+            </h2>
+
+        </div>
+
+
+        <div
+            id="resultCount"
+            class="result-count"
+        ></div>
+
+
+    </div>
+
+
+
+    <div class="filters">
+
+
+        <input
+            id="search"
+            placeholder="Buscar REMOTE-IOS-XXXXXX"
+            autocapitalize="none"
+            spellcheck="false"
+        >
+
+
+        <select id="status">
+
+            <option value="">
+                Todos
+            </option>
+
+            <option value="unused">
+                unused
+            </option>
+
+            <option value="active">
+                active
+            </option>
+
+            <option value="paused">
+                paused
+            </option>
+
+            <option value="disabled">
+                disabled
+            </option>
+
+            <option value="expired">
+                expired
+            </option>
+
+        </select>
+
+
+        <button
+            id="refresh"
+            class="refresh"
+        >
+            Atualizar
+        </button>
+
+
+    </div>
+
+
+
+    <div class="table-wrap">
+
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>KEY</th>
+
+                    <th>PLANO</th>
+
+                    <th>STATUS</th>
+
+                    <th>EXPIRA</th>
+
+                    <th>DEVICE</th>
+
+                    <th>AÇÕES</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="rows"></tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+</div>
+
+
+<div id="toast"></div>
+
+
+<script>
+/* =========================================================
+   FUNDO ANIMADO ESTÁVEL NO IOS
+========================================================= */
+
+const canvas =
+    document.getElementById(
+        "particles"
+    );
+
+const ctx =
+    canvas.getContext(
+        "2d"
+    );
+
+let particles = [];
+
+let canvasWidth = 0;
+let canvasHeight = 0;
+
+let previousWidth = 0;
+
+
+/*
+    IMPORTANTE:
+
+    Safari altera window.innerHeight enquanto
+    a barra inferior aparece/desaparece.
+
+    Por isso não reconstruímos o fundo toda vez
+    que apenas a ALTURA muda.
+*/
+
+function setupCanvas(force = false){
+
+    const width =
+        document.documentElement.clientWidth;
+
+    const height =
+        Math.max(
+            window.innerHeight,
+            document.documentElement.clientHeight
+        );
+
+
+    if(
+        !force &&
+        Math.abs(
+            width -
+            previousWidth
+        ) < 20
+    ){
+        return;
+    }
+
+
+    previousWidth =
+        width;
+
+
+    const dpr =
+        Math.min(
+            window.devicePixelRatio || 1,
+            2
+        );
+
+
+    canvasWidth =
+        width;
+
+    canvasHeight =
+        height;
+
+
+    canvas.width =
+        Math.round(
+            canvasWidth *
+            dpr
+        );
+
+
+    canvas.height =
+        Math.round(
+            canvasHeight *
+            dpr
+        );
+
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+
+    createParticles();
+
+}
+
+
+
+function createParticles(){
+
+    particles = [];
+
+
+    const amount =
+        Math.max(
+            28,
+            Math.floor(
+                canvasWidth /
+                24
+            )
+        );
+
+
+    for(
+        let i = 0;
+        i < amount;
+        i++
+    ){
+
+        particles.push({
+
+            x:
+                Math.random() *
+                canvasWidth,
+
+            y:
+                Math.random() *
+                canvasHeight,
+
+            vx:
+                (
+                    Math.random() -
+                    .5
+                ) *
+                .08,
+
+            vy:
+                (
+                    Math.random() -
+                    .5
+                ) *
+                .08,
+
+            r:
+                Math.random() *
+                .9 +
+                .35
+
+        });
+
+    }
+
+}
+
+
+
+function animateParticles(){
+
+    ctx.clearRect(
+        0,
+        0,
+        canvasWidth,
+        canvasHeight
+    );
+
+
+    for(
+        const p of particles
+    ){
+
+        p.x +=
+            p.vx;
+
+        p.y +=
+            p.vy;
+
+
+        if(
+            p.x < 0 ||
+            p.x > canvasWidth
+        ){
+
+            p.vx *=
+                -1;
 
         }
 
 
+        if(
+            p.y < 0 ||
+            p.y > canvasHeight
+        ){
 
-        function createParticles() {
+            p.vy *=
+                -1;
 
-            particles =
-                [];
+        }
 
 
-            const amount =
-                Math.max(
-                    35,
-                    Math.floor(
-                        window.innerWidth /
-                        25
-                    )
+        ctx.beginPath();
+
+
+        ctx.arc(
+            p.x,
+            p.y,
+            p.r,
+            0,
+            Math.PI *
+            2
+        );
+
+
+        ctx.fillStyle =
+            "rgba(255,255,255,.70)";
+
+
+        ctx.fill();
+
+    }
+
+
+
+    for(
+        let i = 0;
+        i < particles.length;
+        i++
+    ){
+
+        for(
+            let j = i + 1;
+            j < particles.length;
+            j++
+        ){
+
+            const a =
+                particles[i];
+
+            const b =
+                particles[j];
+
+
+            const distance =
+                Math.hypot(
+                    a.x - b.x,
+                    a.y - b.y
                 );
 
 
-            for(
-                let i = 0;
-                i < amount;
-                i++
-            ) {
+            if(
+                distance <
+                105
+            ){
 
-                particles.push({
-
-                    x:
-                        Math.random() *
-                        window.innerWidth,
-
-                    y:
-                        Math.random() *
-                        window.innerHeight,
-
-                    vx:
-                        (
-                            Math.random() -
-                            .5
-                        ) *
-                        .09,
-
-                    vy:
-                        (
-                            Math.random() -
-                            .5
-                        ) *
-                        .09,
-
-                    r:
-                        Math.random() *
-                        1 +
-                        .4
-
-                });
-
-            }
-
-        }
-
-
-
-        function animateParticles() {
-
-            ctx.clearRect(
-                0,
-                0,
-                window.innerWidth,
-                window.innerHeight
-            );
-
-
-            for(
-                const p
-                of
-                particles
-            ) {
-
-                p.x +=
-                    p.vx;
-
-
-                p.y +=
-                    p.vy;
-
-
-                if(
-                    p.x < 0 ||
-                    p.x >
-                    window.innerWidth
-                ) {
-
-                    p.vx *=
-                        -1;
-
-                }
-
-
-                if(
-                    p.y < 0 ||
-                    p.y >
-                    window.innerHeight
-                ) {
-
-                    p.vy *=
-                        -1;
-
-                }
+                const opacity =
+                    (
+                        1 -
+                        distance /
+                        105
+                    ) *
+                    .17;
 
 
                 ctx.beginPath();
 
 
-                ctx.arc(
-                    p.x,
-                    p.y,
-                    p.r,
-                    0,
-                    Math.PI *
-                    2
+                ctx.moveTo(
+                    a.x,
+                    a.y
                 );
 
 
-                ctx.fillStyle =
-                    "rgba(255,255,255,.70)";
+                ctx.lineTo(
+                    b.x,
+                    b.y
+                );
 
 
-                ctx.fill();
-
-            }
-
+                ctx.strokeStyle =
+                    `rgba(255,255,255,${opacity})`;
 
 
-            for(
-                let i = 0;
-                i <
-                particles.length;
-                i++
-            ) {
+                ctx.lineWidth =
+                    .7;
 
 
-                for(
-                    let j =
-                    i + 1;
-
-                    j <
-                    particles.length;
-
-                    j++
-                ) {
-
-
-                    const a =
-                        particles[i];
-
-
-                    const b =
-                        particles[j];
-
-
-                    const dx =
-                        a.x -
-                        b.x;
-
-
-                    const dy =
-                        a.y -
-                        b.y;
-
-
-                    const distance =
-                        Math.sqrt(
-                            dx * dx +
-                            dy * dy
-                        );
-
-
-                    if(
-                        distance <
-                        105
-                    ) {
-
-
-                        const opacity =
-                            (
-                                1 -
-                                distance /
-                                105
-                            ) *
-                            .17;
-
-
-                        ctx.beginPath();
-
-
-                        ctx.moveTo(
-                            a.x,
-                            a.y
-                        );
-
-
-                        ctx.lineTo(
-                            b.x,
-                            b.y
-                        );
-
-
-                        ctx.strokeStyle =
-                            `rgba(
-                                255,
-                                255,
-                                255,
-                                ${opacity}
-                            )`;
-
-
-                        ctx.lineWidth =
-                            .7;
-
-
-                        ctx.stroke();
-
-                    }
-
-                }
+                ctx.stroke();
 
             }
-
-
-            requestAnimationFrame(
-                animateParticles
-            );
 
         }
 
+    }
 
 
-        window.addEventListener(
-            "resize",
-            resizeCanvas
+    requestAnimationFrame(
+        animateParticles
+    );
+
+}
+
+
+/*
+    Resize normal do Safari não recria o fundo
+    se só a barra do navegador mudou a altura.
+*/
+
+window.addEventListener(
+    "resize",
+    () => setupCanvas(false),
+    {
+        passive:true
+    }
+);
+
+
+window.addEventListener(
+    "orientationchange",
+    () => {
+
+        setTimeout(
+            () => setupCanvas(true),
+            250
+        );
+
+    }
+);
+
+
+setupCanvas(true);
+
+animateParticles();
+
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $ =
+    selector =>
+        document.querySelector(
+            selector
         );
 
 
-        resizeCanvas();
-
-
-        animateParticles();
-
-
-
-        /* =====================================
-           HELPERS
-        ===================================== */
-
-        const $ =
-            selector =>
-                document.querySelector(
-                    selector
-                );
-
-
-        let token =
-            localStorage.getItem(
-                "rafaela_token"
-            ) || "";
+let token =
+    localStorage.getItem(
+        "rafaela_token"
+    ) || "";
 
 
 
-        function toast(
-            message
-        ) {
+function toast(
+    message
+){
 
-            const el =
-                $("#toast");
-
-
-            el.textContent =
-                message;
+    const element =
+        $("#toast");
 
 
-            el.style.display =
-                "block";
+    element.textContent =
+        message;
 
 
-            clearTimeout(
-                window.toastTimer
-            );
+    element.style.display =
+        "block";
 
 
-            window.toastTimer =
-                setTimeout(
-                    () => {
-
-                        el.style.display =
-                            "none";
-
-                    },
-                    2000
-                );
-
-        }
+    clearTimeout(
+        window.toastTimer
+    );
 
 
+    window.toastTimer =
+        setTimeout(
+            () => {
 
-        /* =====================================
-           API
-        ===================================== */
+                element.style.display =
+                    "none";
 
-        async function api(
+            },
+            2000
+        );
+
+}
+
+
+
+/* =========================================================
+   API
+========================================================= */
+
+async function api(
+    url,
+    options = {}
+){
+
+    options.headers = {
+
+        ...(options.headers || {}),
+
+        "Content-Type":
+            "application/json"
+
+    };
+
+
+    if(
+        token
+    ){
+
+        options.headers.Authorization =
+            "Bearer " +
+            token;
+
+    }
+
+
+    const response =
+        await fetch(
             url,
-            options = {}
-        ) {
+            options
+        );
 
-            options.headers = {
 
-                ...(options.headers || {}),
+    const data =
+        await response
+        .json()
+        .catch(
+            () => ({})
+        );
 
-                "Content-Type":
-                    "application/json"
 
-            };
+    if(
+        response.status === 401 &&
+        url !== "/api/admin/login"
+    ){
 
+        logout();
 
-            if(
-                token
-            ) {
+        throw new Error(
+            "Sessão expirada"
+        );
 
-                options.headers.Authorization =
-                    "Bearer " +
-                    token;
+    }
 
-            }
 
+    if(
+        !response.ok
+    ){
 
-            const response =
-                await fetch(
-                    url,
-                    options
-                );
+        throw new Error(
+            data.message ||
+            data.error ||
+            "Erro"
+        );
 
+    }
 
-            const data =
-                await response
-                .json()
-                .catch(
-                    () => ({})
-                );
 
+    return data;
 
-            if(
-                response.status ===
-                401 &&
-                url !==
-                "/api/admin/login"
-            ) {
+}
 
-                logout();
 
-                throw new Error(
-                    "Sessão expirada"
-                );
 
-            }
+/* =========================================================
+   LOGIN
+========================================================= */
 
+function showDashboard(){
 
-            if(
-                !response.ok
-            ) {
+    $("#loginScreen")
+        .classList
+        .add(
+            "hidden"
+        );
 
-                throw new Error(
-                    data.error ||
-                    "Erro"
-                );
 
-            }
+    $("#dashboard")
+        .classList
+        .remove(
+            "hidden"
+        );
 
 
-            return data;
+    /*
+        Sempre sobe para o topo.
+        Evita abrir o dashboard no scroll antigo.
+    */
 
-        }
+    window.scrollTo(
+        0,
+        0
+    );
 
 
+    loadKeys();
 
-        /* =====================================
-           LOGIN
-        ===================================== */
+}
 
-        function showDashboard() {
 
-            $("#loginScreen")
-                .classList
-                .add(
-                    "hidden"
-                );
 
+function showLogin(){
 
-            $("#dashboard")
-                .classList
-                .remove(
-                    "hidden"
-                );
+    $("#dashboard")
+        .classList
+        .add(
+            "hidden"
+        );
 
 
-            loadKeys();
+    $("#loginScreen")
+        .classList
+        .remove(
+            "hidden"
+        );
 
-        }
 
+    window.scrollTo(
+        0,
+        0
+    );
 
+}
 
-        function showLogin() {
 
-            $("#dashboard")
-                .classList
-                .add(
-                    "hidden"
-                );
 
+function logout(){
 
-            $("#loginScreen")
-                .classList
-                .remove(
-                    "hidden"
-                );
+    token =
+        "";
 
-        }
 
+    localStorage.removeItem(
+        "rafaela_token"
+    );
 
 
-        function logout() {
+    showLogin();
 
-            token =
-                "";
+}
 
 
-            localStorage.removeItem(
-                "rafaela_token"
-            );
 
+$("#loginButton")
+.onclick =
+async () => {
 
-            showLogin();
 
-        }
+    $("#loginError")
+        .textContent =
+        "";
 
 
+    try{
 
-        $("#loginButton")
-        .onclick =
-        async () => {
 
+        const data =
+            await api(
+                "/api/admin/login",
+                {
 
-            $("#loginError")
-                .textContent =
-                "";
+                    method:
+                        "POST",
 
+                    body:
+                        JSON.stringify({
 
-            try {
+                            username:
+                                $("#username")
+                                .value,
 
+                            password:
+                                $("#password")
+                                .value
 
-                const data =
-                    await api(
-                        "/api/admin/login",
-                        {
-
-                            method:
-                                "POST",
-
-                            body:
-                                JSON.stringify({
-
-                                    username:
-                                        $("#username")
-                                        .value,
-
-                                    password:
-                                        $("#password")
-                                        .value
-
-                                })
-
-                        }
-                    );
-
-
-                token =
-                    data.token;
-
-
-                localStorage.setItem(
-                    "rafaela_token",
-                    token
-                );
-
-
-                showDashboard();
-
-
-            }
-            catch(
-                error
-            ) {
-
-
-                $("#loginError")
-                    .textContent =
-                    "Usuário ou senha inválidos.";
-
-
-            }
-
-        };
-
-
-        $("#logoutButton")
-            .onclick =
-            logout;
-
-
-
-        /* =====================================
-           CUSTOM PLAN
-        ===================================== */
-
-        $("#plan")
-        .onchange =
-        () => {
-
-            $("#customDaysWrap")
-                .classList
-                .toggle(
-
-                    "hidden",
-
-                    $("#plan")
-                    .value !==
-                    "custom"
-
-                );
-
-        };
-
-
-
-        /* =====================================
-           GENERATE
-        ===================================== */
-
-        $("#generateButton")
-        .onclick =
-        async () => {
-
-
-            try {
-
-
-                const data =
-                    await api(
-                        "/api/keys/generate",
-                        {
-
-                            method:
-                                "POST",
-
-                            body:
-                                JSON.stringify({
-
-                                    plan:
-                                        $("#plan")
-                                        .value,
-
-                                    customDays:
-                                        $("#customDays")
-                                        .value,
-
-                                    quantity:
-                                        $("#quantity")
-                                        .value,
-
-                                    note:
-                                        $("#note")
-                                        .value
-
-                                })
-
-                        }
-                    );
-
-
-                $("#generated")
-                    .textContent =
-                    data.keys.join(
-                        "\n"
-                    );
-
-
-                toast(
-                    data.keys.length +
-                    " key(s) gerada(s)"
-                );
-
-
-                loadKeys();
-
-
-            }
-            catch(
-                error
-            ) {
-
-
-                toast(
-                    error.message
-                );
-
-
-            }
-
-        };
-
-
-
-        /* =====================================
-           ESCAPE
-        ===================================== */
-
-        function escapeHTML(
-            value
-        ) {
-
-            return String(
-                value ?? ""
-            )
-            .replace(
-
-                /[&<>"']/g,
-
-                char =>
-                    ({
-
-                        "&":
-                            "&amp;",
-
-                        "<":
-                            "&lt;",
-
-                        ">":
-                            "&gt;",
-
-                        '"':
-                            "&quot;",
-
-                        "'":
-                            "&#39;"
-
-                    })[char]
-
-            );
-
-        }
-
-
-
-        /* =====================================
-           DATA
-        ===================================== */
-
-        function formatDate(
-            timestamp
-        ) {
-
-            if(
-                !timestamp
-            ) {
-
-                return "—";
-
-            }
-
-
-            return new Date(
-                timestamp
-            )
-            .toLocaleString(
-                "pt-BR"
-            );
-
-        }
-
-
-
-        /* =====================================
-           CARREGAR KEYS
-        ===================================== */
-
-        async function loadKeys() {
-
-            try {
-
-
-                const params =
-                    new URLSearchParams();
-
-
-
-                if(
-                    $("#search")
-                    .value
-                ) {
-
-                    params.set(
-
-                        "q",
-
-                        $("#search")
-                        .value
-
-                    );
+                        })
 
                 }
+            );
+
+
+        token =
+            data.token;
+
+
+        localStorage.setItem(
+            "rafaela_token",
+            token
+        );
+
+
+        showDashboard();
+
+
+    }
+    catch(
+        error
+    ){
+
+
+        $("#loginError")
+            .textContent =
+            "Usuário ou senha inválidos.";
+
+
+    }
+
+};
 
 
 
-                if(
-                    $("#status")
-                    .value
-                ) {
+$("#logoutButton")
+.onclick =
+    logout;
 
-                    params.set(
 
-                        "status",
 
-                        $("#status")
-                        .value
+/* =========================================================
+   CUSTOM PLAN
+========================================================= */
 
-                    );
+$("#plan")
+.onchange =
+() => {
+
+
+    $("#customDaysWrap")
+        .classList
+        .toggle(
+
+            "hidden",
+
+            $("#plan")
+                .value !==
+                "custom"
+
+        );
+
+};
+
+
+
+/* =========================================================
+   GERAR KEY
+========================================================= */
+
+$("#generateButton")
+.onclick =
+async () => {
+
+
+    try{
+
+
+        const data =
+            await api(
+                "/api/keys/generate",
+                {
+
+                    method:
+                        "POST",
+
+                    body:
+                        JSON.stringify({
+
+                            plan:
+                                $("#plan")
+                                .value,
+
+                            customDays:
+                                $("#customDays")
+                                .value,
+
+                            quantity:
+                                $("#quantity")
+                                .value,
+
+                            note:
+                                $("#note")
+                                .value
+
+                        })
 
                 }
+            );
+
+
+        $("#generated")
+            .textContent =
+            data.keys.join(
+                "\n"
+            );
+
+
+        toast(
+            data.keys.length +
+            " key(s) gerada(s)"
+        );
+
+
+        loadKeys();
+
+
+    }
+    catch(
+        error
+    ){
+
+
+        toast(
+            error.message
+        );
+
+
+    }
+
+};
 
 
 
-                const data =
-                    await api(
+/* =========================================================
+   HELPERS
+========================================================= */
 
-                        "/api/keys?" +
-                        params
+function escapeHTML(
+    value
+){
 
-                    );
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /[&<>"']/g,
+        character =>
+            ({
+
+                "&":
+                    "&amp;",
+
+                "<":
+                    "&lt;",
+
+                ">":
+                    "&gt;",
+
+                '"':
+                    "&quot;",
+
+                "'":
+                    "&#39;"
+
+            })[
+                character
+            ]
+    );
+
+}
 
 
 
-                $("#resultCount")
-                    .textContent =
+function formatDate(
+    timestamp
+){
 
-                    data.keys.length +
-                    " resultado(s)";
+    if(
+        !timestamp
+    ){
+
+        return "—";
+
+    }
+
+
+    return new Date(
+        timestamp
+    )
+    .toLocaleString(
+        "pt-BR"
+    );
+
+}
 
 
 
-                $("#rows")
-                    .innerHTML =
+/* =========================================================
+   LISTAR KEYS
+========================================================= */
 
-                    data.keys
+async function loadKeys(){
 
-                    .map(
+    try{
 
-                        key =>
 
+        const params =
+            new URLSearchParams();
+
+
+        if(
+            $("#search")
+                .value
+        ){
+
+            params.set(
+                "q",
+                $("#search")
+                    .value
+            );
+
+        }
+
+
+        if(
+            $("#status")
+                .value
+        ){
+
+            params.set(
+                "status",
+                $("#status")
+                    .value
+            );
+
+        }
+
+
+        const data =
+            await api(
+                "/api/keys?" +
+                params
+            );
+
+
+        $("#resultCount")
+            .textContent =
+            data.keys.length +
+            " resultado(s)";
+
+
+        $("#rows")
+            .innerHTML =
+            data.keys
+            .map(
+                key =>
 `
 <tr>
 
-<td>
-<strong>
-${escapeHTML(
-    key.license_key
-)}
-</strong>
-</td>
+    <td data-label="KEY">
+        <strong>
+            ${escapeHTML(
+                key.license_key
+            )}
+        </strong>
+    </td>
 
 
-<td>
-${escapeHTML(
-    key.plan
-)}
-</td>
+    <td data-label="PLANO">
+        ${escapeHTML(
+            key.plan
+        )}
+    </td>
 
 
-<td>
+    <td data-label="STATUS">
 
-<span class="status">
+        <span class="status">
 
-${escapeHTML(
-    key.status
-)}
+            ${escapeHTML(
+                key.status
+            )}
 
-</span>
+        </span>
 
-</td>
-
-
-<td>
-
-${formatDate(
-    key.expires_at
-)}
-
-</td>
+    </td>
 
 
-<td>
+    <td data-label="EXPIRA">
 
-${
-    key.device_token
+        ${formatDate(
+            key.expires_at
+        )}
 
-    ?
-
-    escapeHTML(
-        key.device_token
-        .slice(
-            0,
-            13
-        )
-    ) +
-    "…"
-
-    :
-
-    "—"
-}
-
-</td>
+    </td>
 
 
-<td>
+    <td data-label="DEVICE">
+
+        ${
+            key.device_token
+
+            ?
+
+            escapeHTML(
+                key.device_token
+                .slice(
+                    0,
+                    18
+                )
+            ) +
+            "…"
+
+            :
+
+            "—"
+        }
+
+    </td>
 
 
-${
-    key.status ===
-    "active"
+    <td
+        data-label="AÇÕES"
+        class="actions-cell"
+    >
 
-    ?
+
+        ${
+            key.status ===
+            "active"
+
+            ?
 
 `
 <button
@@ -2507,21 +2616,21 @@ ${
         'pause'
     )"
 >
-Pausar
+    Pausar
 </button>
 `
 
-    :
+            :
 
-    ""
-}
+            ""
+        }
 
 
-${
-    key.status ===
-    "paused"
+        ${
+            key.status ===
+            "paused"
 
-    ?
+            ?
 
 `
 <button
@@ -2531,32 +2640,32 @@ ${
         'resume'
     )"
 >
-Retomar
+    Retomar
 </button>
 `
 
-    :
+            :
 
-    ""
-}
-
-
-<button
-    class="action"
-    onclick="keyAction(
-        '${key.license_key}',
-        'reset-device'
-    )"
->
-Reset device
-</button>
+            ""
+        }
 
 
-${
-    key.status ===
-    "disabled"
+        <button
+            class="action"
+            onclick="keyAction(
+                '${key.license_key}',
+                'reset-device'
+            )"
+        >
+            Reset device
+        </button>
 
-    ?
+
+        ${
+            key.status ===
+            "disabled"
+
+            ?
 
 `
 <button
@@ -2566,11 +2675,11 @@ ${
         'enable'
     )"
 >
-Ativar
+    Ativar
 </button>
 `
 
-    :
+            :
 
 `
 <button
@@ -2580,258 +2689,241 @@ Ativar
         'disable'
     )"
 >
-Desativar
+    Desativar
 </button>
 `
-}
+        }
 
 
-<button
-    class="action"
-    onclick="deleteKey(
-        '${key.license_key}'
-    )"
->
-Excluir
-</button>
+        <button
+            class="action"
+            onclick="deleteKey(
+                '${key.license_key}'
+            )"
+        >
+            Excluir
+        </button>
 
 
-</td>
+    </td>
 
 </tr>
 `
-
-                    )
-
-                    .join("");
+            )
+            .join("");
 
 
+    }
+    catch(
+        error
+    ){
 
+
+        toast(
+            error.message
+        );
+
+
+    }
+
+}
+
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+window.keyAction =
+async (
+    key,
+    action
+) => {
+
+
+    try{
+
+
+        await api(
+
+            "/api/keys/" +
+            encodeURIComponent(
+                key
+            ) +
+            "/" +
+            action,
+
+            {
+                method:
+                    "POST"
             }
-            catch(
-                error
-            ) {
+
+        );
 
 
-                toast(
-                    error.message
-                );
+        toast(
+            "Atualizado"
+        );
 
 
+        loadKeys();
+
+
+    }
+    catch(
+        error
+    ){
+
+
+        toast(
+            error.message
+        );
+
+
+    }
+
+};
+
+
+
+window.deleteKey =
+async key => {
+
+
+    if(
+        !confirm(
+            "Excluir " +
+            key +
+            "?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+
+        await api(
+
+            "/api/keys/" +
+            encodeURIComponent(
+                key
+            ),
+
+            {
+                method:
+                    "DELETE"
             }
+
+        );
+
+
+        toast(
+            "Key excluída"
+        );
+
+
+        loadKeys();
+
+
+    }
+    catch(
+        error
+    ){
+
+
+        toast(
+            error.message
+        );
+
+
+    }
+
+};
+
+
+
+/* =========================================================
+   FILTROS
+========================================================= */
+
+$("#refresh")
+.onclick =
+    loadKeys;
+
+
+$("#status")
+.onchange =
+    loadKeys;
+
+
+$("#search")
+.oninput =
+() => {
+
+
+    clearTimeout(
+        window.searchDelay
+    );
+
+
+    window.searchDelay =
+        setTimeout(
+            loadKeys,
+            250
+        );
+
+};
+
+
+
+/* =========================================================
+   RESTAURAR SESSÃO
+========================================================= */
+
+(
+    async () => {
+
+
+        if(
+            !token
+        ){
+
+            showLogin();
+
+            return;
 
         }
 
 
+        try{
 
-        /* =====================================
-           AÇÕES
-        ===================================== */
 
-        window.keyAction =
-        async (
-            key,
-            action
-        ) => {
-
-
-            try {
-
-
-                await api(
-
-                    "/api/keys/" +
-
-                    encodeURIComponent(
-                        key
-                    ) +
-
-                    "/" +
-
-                    action,
-
-                    {
-
-                        method:
-                            "POST"
-
-                    }
-
-                );
-
-
-                toast(
-                    "Atualizado"
-                );
-
-
-                loadKeys();
-
-
-            }
-            catch(
-                error
-            ) {
-
-
-                toast(
-                    error.message
-                );
-
-
-            }
-
-        };
-
-
-
-        /* =====================================
-           EXCLUIR KEY
-        ===================================== */
-
-        window.deleteKey =
-        async key => {
-
-
-            if(
-                !confirm(
-                    "Excluir " +
-                    key +
-                    "?"
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            try {
-
-
-                await api(
-
-                    "/api/keys/" +
-
-                    encodeURIComponent(
-                        key
-                    ),
-
-                    {
-
-                        method:
-                            "DELETE"
-
-                    }
-
-                );
-
-
-                toast(
-                    "Key excluída"
-                );
-
-
-                loadKeys();
-
-
-            }
-            catch(
-                error
-            ) {
-
-
-                toast(
-                    error.message
-                );
-
-
-            }
-
-        };
-
-
-
-        /* =====================================
-           FILTROS
-        ===================================== */
-
-        $("#refresh")
-            .onclick =
-            loadKeys;
-
-
-        $("#status")
-            .onchange =
-            loadKeys;
-
-
-        $("#search")
-        .oninput =
-        () => {
-
-
-            clearTimeout(
-                window.searchDelay
+            await api(
+                "/api/admin/me"
             );
 
 
-            window.searchDelay =
-                setTimeout(
-                    loadKeys,
-                    250
-                );
-
-        };
+            showDashboard();
 
 
-
-        /* =====================================
-           RESTAURAR SESSÃO
-        ===================================== */
-
-        (
-            async () => {
+        }
+        catch{
 
 
-                if(
-                    !token
-                ) {
-
-                    showLogin();
-
-                    return;
-
-                }
+            showLogin();
 
 
-                try {
+        }
 
 
-                    await api(
-                        "/api/admin/me"
-                    );
+    }
+)();
 
-
-                    showDashboard();
-
-
-                }
-                catch {
-
-
-                    showLogin();
-
-
-                }
-
-
-            }
-        )();
-
-    </script>
-
+</script>
 
 </body>
-
 </html>
